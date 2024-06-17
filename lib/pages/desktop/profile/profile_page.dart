@@ -9,6 +9,7 @@ import 'package:ICTC_Website/pages/desktop/profile/profileDetails.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -62,6 +63,19 @@ class _ProfilePageState extends State<ProfilePage> {
         .withConverter((data) => data['is_approved'] as bool);
 
     return query;
+  }
+
+  Future<String?> getCourseUrl(Course course) async {
+    try {
+      final url = await Supabase.instance.client.storage
+          .from('images')
+          .createSignedUrl(
+              '${course.id}/image.png',
+              60);
+      return url;
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<List<Course>> getPendingCourses(Student student) async {
@@ -319,8 +333,53 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  FutureBuilder(
+              future:getCourseUrl(course) , 
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                if (snapshot.hasData) {
+                  final url = snapshot.data!;
+                  return Image.network(
+                    url,
+                    fit: BoxFit.cover, height: 200, width: 150,
+                  );
+                }
+
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image(image: AssetImage('assets/images/logo_ictc.png'), fit: BoxFit.cover, height: 200, width: 150,),
+                      SizedBox(height:20  ,),
+                      Text('No image attached.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black54))
+                    ],
+                  ),
+                );
+              }
+            ),
                   Text(
                     "Title: ${course.title}",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Cost: ₱ ${course.cost}",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Description: ${HtmlUnescape().convert(course.description ?? "No description provided.")}",
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w400,
