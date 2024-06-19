@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:ICTC_Website/models/course.dart';
-import 'package:ICTC_Website/models/register.dart';
 import 'package:ICTC_Website/models/student.dart';
 import 'package:ICTC_Website/pages/desktop/home.dart';
-import 'package:ICTC_Website/pages/desktop/profile/course_dialog.dart';
 import 'package:ICTC_Website/pages/desktop/profile/profileDetails.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:html_unescape/html_unescape.dart';
+import 'package:ICTC_Website/pages/desktop/footer.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -133,14 +132,25 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBarDesktop(),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white24,
         body: SingleChildScrollView(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              buildStudentDetails(),
-            ],
+          child: Container(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    buildStudentDetails(),
+                  ],
+                ),
+              FooterWidget(),
+              ],
+            ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: const Color.fromARGB(38, 0, 0, 0)),
+            ),
           ),
         ));
   }
@@ -250,8 +260,8 @@ class _ProfilePageState extends State<ProfilePage> {
           margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
           height: 80,
           decoration: BoxDecoration(
-            color: Colors.white24,
-            border: Border.all(color: Colors.black38, width: 0.5),
+            color: Colors.black12,
+            border: Border.all(color: const Color.fromARGB(51, 0, 0, 0), width: 0.5),
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
           ),
           child: InkWell(
@@ -333,35 +343,45 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  FutureBuilder(
-              future:getCourseUrl(course) , 
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-
-                if (snapshot.hasData) {
-                  final url = snapshot.data!;
-                  return Image.network(
-                    url,
-                    fit: BoxFit.cover, height: 200, width: 150,
-                  );
-                }
-
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(image: AssetImage('assets/images/logo_ictc.png'), fit: BoxFit.cover, height: 200, width: 150,),
-                      SizedBox(height:20  ,),
-                      Text('No image attached.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black54))
-                    ],
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 10),
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: 360,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.black12)),
+                      child: FutureBuilder(
+                                    future:getCourseUrl(course) , 
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                                      }
+                      
+                                      if (snapshot.hasData) {
+                      final url = snapshot.data!;
+                      return Image.network(
+                        url,
+                        fit: BoxFit.cover, height: 200, width: 150,
+                      );
+                                      }
+                      
+                                      return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image(image: AssetImage('assets/images/logo_ictc.png'), fit: BoxFit.cover, height: 200, width: 150,),
+                          SizedBox(height:20  ,),
+                          Text('No image attached.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black54))
+                        ],
+                      ),
+                                      );
+                                    }
+                                  ),
+                    ),
                   ),
-                );
-              }
-            ),
                   Text(
                     "Title: ${course.title}",
                     style: TextStyle(
