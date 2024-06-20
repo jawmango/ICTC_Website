@@ -64,6 +64,18 @@ class _ProfilePageState extends State<ProfilePage> {
     return query;
   }
 
+  Future<bool> checkEval(Student student, Course course) async {
+    final query = await Supabase.instance.client
+        .from('registration')
+        .select('eval_status')
+        .eq('student_id', student.id)
+        .eq('course_id', course.id!)
+        .single()
+        .withConverter((data) => data['eval_status'] as bool);
+
+    return query;
+  }
+
   Future<String?> getCourseUrl(Course course) async {
     try {
       final url = await Supabase.instance.client.storage
@@ -100,6 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
         .select('*, registration!inner(*)')
         .eq('registration.student_id', student.id)
         .eq('registration.is_approved', true)
+        .eq('registration.eval_status', false)
         .withConverter(
           (data) => data
               .map(
@@ -116,7 +129,8 @@ class _ProfilePageState extends State<ProfilePage> {
         .from('course')
         .select('*, registration!inner(*)')
         .eq('registration.student_id', student.id)
-        .eq('registration.payment_status', true)
+        .eq('registration.is_approved', true)
+        .eq('registration.eval_status', true)
         .withConverter(
           (data) => data
               .map(
@@ -193,8 +207,9 @@ class _ProfilePageState extends State<ProfilePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ongoingCard(context, student),
                 pendingCard(context, student),
+                ongoingCard(context, student),
+                completedCard(context, student),
                 //completedCard(context, student)
               ],
             ),
@@ -359,7 +374,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: CircularProgressIndicator(),
                       );
                                       }
-                      
                                       if (snapshot.hasData) {
                       final url = snapshot.data!;
                       return Image.network(
@@ -367,7 +381,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         fit: BoxFit.cover, height: 200, width: 150,
                       );
                                       }
-                      
                                       return Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -498,7 +511,7 @@ class _ProfilePageState extends State<ProfilePage> {
           margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
           height: 80,
           decoration: BoxDecoration(
-            color: Colors.white24,
+            color: Color(0xFFFEE191),
             border: Border.all(color: Colors.black38, width: 0.5),
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
           ),
@@ -633,6 +646,196 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+Widget completedCard(BuildContext context, Student student) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Completed Courses',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.1,
+          width: MediaQuery.of(context).size.width * 0.5,
+          margin: EdgeInsets.only(top: 10, bottom: 0),
+          child: FutureBuilder(
+            future: getCompletedCourses(student),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              final courseList = snapshot.data!;
+
+              if (courseList.isEmpty) {
+                return Center(
+                  child: Text("No Completed courses!"),
+                );
+              }
+
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: courseList.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return createCompletedText(courseList[index], student);
+                },
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget createCompletedText(Course course, Student student) {
+    return Row(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width * 0.15,
+          margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
+          height: 80,
+          decoration: BoxDecoration(
+            color: Colors.white24,
+            border: Border.all(color: Colors.black38, width: 0.5),
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          ),
+          child: InkWell(
+            onTap: () async {
+              await showDialog<void>(
+                  barrierLabel: 'Completed Course Details',
+                  barrierDismissible: true,
+                  context: context,
+                  builder: (context) {
+                    return buildCompletedDialog(course, student);
+                  }
+                  //context: context, builder: (context) => buildOngoingDialog(course)
+                  );
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        course.title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w500),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildCompletedDialog(Course course, Student student) {
+    return AlertDialog(
+      content: Container(
+        // width: MediaQuery.of(context).size.width * 0.3,
+        // height: MediaQuery.of(context).size.height * 0.3,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back),
+                  ),
+                  Text(
+                    "Completed Course Details",
+                    style: TextStyle(fontSize: 30),
+                  ),
+                ],
+              ),
+            ),
+            Divider(),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Title: ${course.title}",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Schedule: ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)}",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  FutureBuilder(
+                      future: checkEval(student, course),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        return Text(
+                          "Course Status: ${snapshot.data! ? "Completed" : "Complete Evaluation"}",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      }),
+                  SizedBox(height: 20),
+                  // Text(
+                  //   "Certificate Status: Pending",
+                  //   style: TextStyle(
+                  //     fontSize: 18,
+                  //     fontWeight: FontWeight.w400,
+                  //   ),
+                  // ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
   // Widget completedCard(BuildContext context, Student student) {
   //   return Column(
   //     mainAxisAlignment: MainAxisAlignment.center,
