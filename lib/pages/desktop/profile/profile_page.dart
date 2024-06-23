@@ -52,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
     super.dispose();
   }
 
-  Future<bool> checkIfApproved(Student student, Course course) async {
+  Future<bool> checkIfApproved(Student student, Course course) async { //payment status
     final query = await Supabase.instance.client
         .from('registration')
         .select('is_approved')
@@ -63,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return query;
   }
-  Future<bool> checkIfAttended(Student student, Course course) async {
+  Future<bool> checkIfAttended(Student student, Course course) async { // Attendance Status
     final query = await Supabase.instance.client
         .from('registration')
         .select('attend_status')
@@ -71,6 +71,17 @@ class _ProfilePageState extends State<ProfilePage> {
         .eq('course_id', course.id!)
         .single()
         .withConverter((data) => data['attend_status'] as bool);
+
+    return query;
+  }
+  Future<bool> checkIfBill(Student student, Course course) async { // Billing Status
+    final query = await Supabase.instance.client
+        .from('registration')
+        .select('bill_status')
+        .eq('student_id', student.id)
+        .eq('course_id', course.id!)
+        .single()
+        .withConverter((data) => data['bill_status'] as bool);
 
     return query;
   }
@@ -83,6 +94,18 @@ class _ProfilePageState extends State<ProfilePage> {
         .eq('course_id', course.id!)
         .single()
         .withConverter((data) => data['eval_status'] as bool);
+
+    return query;
+  }
+
+  Future<bool> checkCert(Student student, Course course) async {
+    final query = await Supabase.instance.client
+        .from('registration')
+        .select('cert_status')
+        .eq('student_id', student.id)
+        .eq('course_id', course.id!)
+        .single()
+        .withConverter((data) => data['cert_status'] as bool);
 
     return query;
   }
@@ -439,6 +462,25 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   SizedBox(height: 20),
                   FutureBuilder(
+                    future: checkIfBill(student, course),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+
+                      return Text(
+                        "Biliing Statement: ${snapshot.data! ? "Sent" : "Pending"}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  FutureBuilder(
                     future: checkIfApproved(student, course),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -456,7 +498,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       );
                     },
                   ),
-                  SizedBox(height: 20),
                 ],
               ),
             )
@@ -623,7 +664,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   SizedBox(height: 20),
                   FutureBuilder(
-                      future: checkIfApproved(student, course),
+                      future: checkIfAttended(student, course),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -633,7 +674,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         }
 
                         return Text(
-                          "Payment Status: ${snapshot.data! ? "Paid" : "Pending"}",
+                          "Attendance Status: ${snapshot.data! ? "Complete" : "Pending"}",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
@@ -650,7 +691,6 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: CircularProgressIndicator(),
                           );
                         }
-
                         return Text(
                           "Evaluation Link: ${snapshot.data! ? course.evalink : "Please complete the attendance first"}",
                           style: TextStyle(
@@ -823,33 +863,44 @@ Widget completedCard(BuildContext context, Student student) {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
+                  // SizedBox(height: 20),
+                  // FutureBuilder(
+                  //     future: checkEval(student, course),
+                  //     builder: (context, snapshot) {
+                  //       if (snapshot.connectionState ==
+                  //           ConnectionState.waiting) {
+                  //         return Center(
+                  //           child: CircularProgressIndicator(),
+                  //         );
+                  //       }
+
+                  //       return Text(
+                  //         "Course Status: ${snapshot.data! ? "Completed" : "Complete Evaluation"}",
+                  //         style: TextStyle(
+                  //           fontSize: 18,
+                  //           fontWeight: FontWeight.w400,
+                  //         ),
+                  //       );
+                  //     }),
                   SizedBox(height: 20),
                   FutureBuilder(
-                      future: checkEval(student, course),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-
-                        return Text(
-                          "Course Status: ${snapshot.data! ? "Completed" : "Complete Evaluation"}",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                          ),
+                    future: checkCert(student, course),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(),
                         );
-                      }),
-                  SizedBox(height: 20),
-                  // Text(
-                  //   "Certificate Status: Pending",
-                  //   style: TextStyle(
-                  //     fontSize: 18,
-                  //     fontWeight: FontWeight.w400,
-                  //   ),
-                  // ),
+                      }
+
+                      return Text(
+                        "Certificate Status: ${snapshot.data! ? "Sent" : "Pending"}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             )
