@@ -63,6 +63,17 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return query;
   }
+  Future<bool> checkIfAttended(Student student, Course course) async {
+    final query = await Supabase.instance.client
+        .from('registration')
+        .select('attend_status')
+        .eq('student_id', student.id)
+        .eq('course_id', course.id!)
+        .single()
+        .withConverter((data) => data['attend_status'] as bool);
+
+    return query;
+  }
 
   Future<bool> checkEval(Student student, Course course) async {
     final query = await Supabase.instance.client
@@ -162,7 +173,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color.fromARGB(255, 250, 250, 250),
               border: Border.all(color: const Color.fromARGB(38, 0, 0, 0)),
             ),
           ),
@@ -275,7 +286,7 @@ class _ProfilePageState extends State<ProfilePage> {
           margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
           height: 80,
           decoration: BoxDecoration(
-            color: Colors.black12,
+            color: Color.fromARGB(83, 255, 102, 102),
             border: Border.all(color: const Color.fromARGB(51, 0, 0, 0), width: 0.5),
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
           ),
@@ -511,7 +522,7 @@ class _ProfilePageState extends State<ProfilePage> {
           margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
           height: 80,
           decoration: BoxDecoration(
-            color: Color(0xFFFEE191),
+            color: Color.fromARGB(150, 255, 221, 126),
             border: Border.all(color: Colors.black38, width: 0.5),
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
           ),
@@ -629,14 +640,25 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         );
                       }),
-                  SizedBox(height: 20),
-                  // Text(
-                  //   "Certificate Status: Pending",
-                  //   style: TextStyle(
-                  //     fontSize: 18,
-                  //     fontWeight: FontWeight.w400,
-                  //   ),
-                  // ),
+                      SizedBox(height: 20),
+                      FutureBuilder(
+                      future: checkIfAttended(student, course),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        return Text(
+                          "Evaluation Link: ${snapshot.data! ? course.evalink : "Please complete the attendance first"}",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      }),
                 ],
               ),
             )
@@ -702,7 +724,7 @@ Widget completedCard(BuildContext context, Student student) {
           margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
           height: 80,
           decoration: BoxDecoration(
-            color: Colors.white24,
+            color: Color.fromARGB(110, 95, 255, 113),
             border: Border.all(color: Colors.black38, width: 0.5),
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
           ),

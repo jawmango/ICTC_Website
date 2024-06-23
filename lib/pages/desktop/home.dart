@@ -77,7 +77,7 @@ Widget _buildHero(context) {
                       ],
                     ),
                     Text(
-                      "PROFESSIONAL.",
+                      "PROFESSIONAL",
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     SizedBox(

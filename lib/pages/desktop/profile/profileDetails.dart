@@ -92,8 +92,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                   '${widget.student.email}',
                   style: TextStyle(
                       fontWeight: FontWeight.w400,
-                      color: Colors.black38,
-                      fontSize: 14),
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 20),
                 ),
                 Container(
                   margin: EdgeInsets.only(bottom: 10),
@@ -102,8 +102,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                     "Contact: ${widget.student.contactNumber}",
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
-                        color: Colors.black87,
-                        fontSize: 13),
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 20),
                   ),
                 ),
                 Material(

@@ -20,6 +20,7 @@ class Course {
   String? duration;
   String? schedule;
   String? venue;
+  String evalink;
 
   @JsonKey(name: 'start_date')
   DateTime? startDate;
@@ -38,6 +39,7 @@ class Course {
     this.duration,
     this.schedule,
     this.venue,
+    required this.evalink,
     this.startDate,
     this.endDate,
   });
@@ -49,5 +51,8 @@ class Course {
   @override
   String toString() {
     return title;
+  }
+  String toStringEval() {
+    return evalink;
   }
 }
