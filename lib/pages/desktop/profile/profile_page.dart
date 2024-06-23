@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -682,23 +685,61 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       }),
                       SizedBox(height: 20),
-                      FutureBuilder(
+                     FutureBuilder(
                       future: checkIfAttended(student, course),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
                           return Center(
                             child: CircularProgressIndicator(),
                           );
                         }
-                        return Text(
-                          "Evaluation Link: ${snapshot.data! ? course.evalink : "Please complete the attendance first"}",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        );
-                      }),
+
+                        if (snapshot.hasData && snapshot.data == true) {
+                          return RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black, // default color
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: "Evaluation Link: ",
+                                  style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w100,                              
+                                ),
+                                ),
+                                TextSpan(
+                                  text: course.evalink,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 42, 134, 255), // same as default color
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () async {
+                                      final url = course.evalink;
+                                      if (await canLaunch(url)) {
+                                        await launch(url);
+                                      } else {
+                                        throw 'Could not launch $url';
+                                      }
+                                    },
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Text(
+                            "Evaluation Link: Please complete the attendance first",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          );
+                        }
+                      },
+                    ),
                 ],
               ),
             )
