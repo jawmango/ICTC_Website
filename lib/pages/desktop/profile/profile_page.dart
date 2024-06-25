@@ -934,7 +934,7 @@ Widget completedCard(BuildContext context, Student student) {
                       }
 
                       return Text(
-                        "Certificate Status: ${snapshot.data! ? "Sent" : "Pending"}",
+                        "Certificate: ${snapshot.data! ? "Sent" : "Pending"}",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
