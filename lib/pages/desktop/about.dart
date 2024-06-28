@@ -112,57 +112,64 @@ Widget _buildHero(context) {
                       ],
                     ),
                   ]),
-                  Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                  Row(
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 155, 0),
+                    child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        "VISION",
-                         style: TextStyle(
-                         fontSize: 55,
-                         fontWeight: FontWeight.bold,
-                        color : Color.fromARGB(255, 255, 200, 73),
-                        )
-                       ),
-                     Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                    Row(
                       children: [
                         Text(
-                          "ICTC seeks to share in the",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "University mission in achieving",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "academic excellence through",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "developing, designing, and",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "delivering quality ICT programs",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "responsive to the needs of the",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "community.",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                      ],
-                    ),
+                          "VISION",
+                           style: TextStyle(
+                           fontSize: 55,
+                           fontWeight: FontWeight.bold,
+                          color : Color.fromARGB(255, 255, 200, 73),
+                          )
+                         ),
+                          ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                       Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "ICTC seeks to share in the",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "University mission in achieving",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "academic excellence through",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "developing, designing, and",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "delivering quality ICT programs",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "responsive to the needs of the",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "community.",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                        ],
+                      ),
+                      
                     ],
-                  ),
-                  ],
+                                    ),
                   ),
             ],
           ),
