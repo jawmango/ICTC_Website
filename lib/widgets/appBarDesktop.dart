@@ -84,7 +84,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     SizedBox(width: 16),
@@ -183,7 +183,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                         }
                       },
                     ),
-                    SizedBox(width: 16),
+                    SizedBox(width: 560),
                     _buildButtons(context)
                   ],
                 ),

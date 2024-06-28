@@ -49,93 +49,44 @@ Widget _buildHero(context) {
   return Stack(
     children: [
       Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+          image: AssetImage('assets/images/bg12.jpg'),
+          fit: BoxFit.cover,
+          ),
+        ) ,
         alignment: Alignment.topLeft,
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.8,
-        color: Color(0xff19306B),
+        height: MediaQuery.of(context).size.height * 0.85,
         child: Padding(
           padding: EdgeInsets.fromLTRB(180, 15, 15, 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          "MISSION",
-                          style: TextStyle(
-                            fontSize: 55,
-                            fontWeight: FontWeight.bold,
-                            color : Color.fromARGB(255, 255, 200, 73),
-                          )
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "ICTC seeks to share in the",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "University mission in achieving",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "academic excellence through",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "developing, designing, and",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "delivering quality ICT programs",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "responsive to the needs of the",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                        Text(
-                          "community.",
-                          style: AppTextStyles.bodyLarge,
-                        ),
-                      ],
-                    ),
-                  ]),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 155, 0),
-                    child: Column(
+              Container(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 200),
+                child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                    Row(
-                      children: [
-                        Text(
-                          "VISION",
-                           style: TextStyle(
-                           fontSize: 55,
-                           fontWeight: FontWeight.bold,
-                          color : Color.fromARGB(255, 255, 200, 73),
-                          )
-                         ),
-                          ],
+                      Row(
+                        children: [
+                          Text(
+                            "MISSION",
+                            style: TextStyle(
+                              fontSize: 55,
+                              fontWeight: FontWeight.bold,
+                              color : Color.fromARGB(255, 255, 200, 73),
+                            )
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                       Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "ICTC seeks to share in the",
@@ -167,27 +118,92 @@ Widget _buildHero(context) {
                           ),
                         ],
                       ),
-                      
+                    ]),
+              ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 275, 130, 0),
+                    child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                    Row(
+                      children: [
+                        Text(
+                          "VISION",
+                           style: TextStyle(
+                           fontSize: 55,
+                           fontWeight: FontWeight.bold,
+                          color : Color.fromARGB(255, 255, 200, 73),
+                          )
+                         ),
+                          ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                       Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "The globally recognized Center offering",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "and delivering quality Information &",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "Communications Technology programs for",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            " continuing education and career academy",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "courses in the region. The regional hub in",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "providing world-class industry-centric trainings",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "and certifications. The leader in providing",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            " conferences on emerging technological trends ",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                          Text(
+                            "powering the university into academic excellence.",
+                            style: AppTextStyles.bodyLarge,
+                          ),
+                        ],
+                      ),
                     ],
-                                    ),
                   ),
+                ),
             ],
           ),
         ),
       ),
-      
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset(
-            'assets/images/ictc_logo.png',
-            height: MediaQuery.of(context).size.height * 0.7,
-            width: MediaQuery.of(context).size.width*0.7,
-            alignment: Alignment.center,
-          ),
-        ],
-      ),
+                    Container( //center logo
+                      margin: EdgeInsets.fromLTRB(0, 110, 0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/logo_ictc.png',
+                          height: MediaQuery.of(context).size.height * 0.6,
+                          width: MediaQuery.of(context).size.width*0.6,
+                        ),
+                      ],
+                    ),
+                  ),
     ],
   );
 }
@@ -271,61 +287,10 @@ Widget _buildPrograms(context) {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Featured Programs",
+          Text("Our Team",
               style: Theme.of(context).textTheme.bodyLarge),
           SizedBox(height: 50),
-          FutureBuilder(
-            future: Supabase.instance.client
-                .from('program')
-                .select()
-                .withConverter(
-                    (data) => data.map((e) => Program.fromJson(e)).toList()),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-
-              final programs = snapshot.data as List<Program>;
-              if (MediaQuery.of(context).size.width < 1450) {
-                // ListView for small screen sizes
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: programs.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: ProgramCardWidget(program: programs[index]),
-                      );
-                    },
-                  ),
-                );
-              } else {
-                // GridView for larger screen sizes
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 300),
-                  child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                      childAspectRatio: 0.8,
-                    ),
-                    itemCount: programs.length,
-                    itemBuilder: (context, index) {
-                      return ProgramCardWidget(program: programs[index]);
-                    },
-                  ),
-                );
-              }
-            },
-          ),
+          
         ],
       ),
     ),

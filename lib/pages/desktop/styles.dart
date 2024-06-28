@@ -9,7 +9,7 @@ class AppTextStyles {
 
   static const TextStyle bodyLarge = TextStyle(
     color: const Color.fromARGB(255, 237, 237, 237), // Replace with your desired color
-    fontSize: 27, // Example of setting font size
+    fontSize: 24, // Example of setting font size
     fontWeight: FontWeight.w300,
   );
 
