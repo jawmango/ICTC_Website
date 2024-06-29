@@ -227,63 +227,63 @@ class _ProfileFormState extends State<ProfileForm> {
               ),
             ),
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "I am a: ",
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Expanded(
-                child: ListTile(
-                  leading: Radio<ProfileType>(
-                    value: ProfileType.student,
-                    groupValue: _type,
-                    onChanged: (value) {
-                      setState(() {
-                        _type = value;
-                      });
-                    },
-                  ),
-                  title: const Text(
-                    "Student",
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: ListTile(
-                  leading: Radio<ProfileType>(
-                    value: ProfileType.professional,
-                    groupValue: _type,
-                    onChanged: (value) {
-                      setState(() {
-                        _type = value;
-                      });
-                    },
-                  ),
-                  title: const Text(
-                    "Professional",
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 20),
-          buildExtension(),
+          // Row(
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   children: [
+          //     Text(
+          //       "I am a: ",
+          //       style: TextStyle(
+          //         color: Colors.black87,
+          //         fontSize: 14,
+          //         fontWeight: FontWeight.w400,
+          //       ),
+          //     ),
+          //     Expanded(
+          //       child: ListTile(
+          //         leading: Radio<ProfileType>(
+          //           value: ProfileType.student,
+          //           groupValue: _type,
+          //           onChanged: (value) {
+          //             setState(() {
+          //               _type = value;
+          //             });
+          //           },
+          //         ),
+          //         title: const Text(
+          //           "Student",
+          //           style: TextStyle(
+          //             color: Colors.black87,
+          //             fontSize: 14,
+          //             fontWeight: FontWeight.w400,
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //     Expanded(
+          //       child: ListTile(
+          //         leading: Radio<ProfileType>(
+          //           value: ProfileType.professional,
+          //           groupValue: _type,
+          //           onChanged: (value) {
+          //             setState(() {
+          //               _type = value;
+          //             });
+          //           },
+          //         ),
+          //         title: const Text(
+          //           "Professional",
+          //           style: TextStyle(
+          //             color: Colors.black87,
+          //             fontSize: 14,
+          //             fontWeight: FontWeight.w400,
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // SizedBox(height: 20),
+          // buildExtension(),
           SizedBox(height: 20),
           FilledButton(
               style: ButtonStyle(

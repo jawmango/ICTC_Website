@@ -696,11 +696,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
                         if (snapshot.hasData && snapshot.data == true) {
                           return RichText(
-                            text: TextSpan(
-                              style: TextStyle(
+                                text: TextSpan(
+                                style: TextStyle(
                                 fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black, // default color
+                                fontWeight: FontWeight.w200,
+                                color: Colors.black87, // default color
                               ),
                               children: [
                                 TextSpan(
@@ -934,7 +934,7 @@ Widget completedCard(BuildContext context, Student student) {
                       }
 
                       return Text(
-                        "Certificate Status: ${snapshot.data! ? "Sent" : "Pending"}",
+                        "Certificate: ${snapshot.data! ? "Sent" : "Pending"}",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w400,

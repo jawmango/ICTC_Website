@@ -331,22 +331,22 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
               if (snapshot.hasData) {
                 final student = snapshot.data!;
 
-                if (student.school == null && student.office == null) {
-                  return AlertDialog(
-                      content: Container(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.5,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                ProfileForm(student: student),
-                              ],
-                            ),
-                          )));
-                }
+                // if (student.school == null && student.office == null) {
+                //   return AlertDialog(
+                //       content: Container(
+                //           width: MediaQuery.of(context).size.width * 0.3,
+                //           height: MediaQuery.of(context).size.height * 0.5,
+                //           child: SingleChildScrollView(
+                //             child: Column(
+                //               mainAxisAlignment: MainAxisAlignment.center,
+                //               crossAxisAlignment: CrossAxisAlignment.center,
+                //               mainAxisSize: MainAxisSize.min,
+                //               children: [
+                //                 ProfileForm(student: student),
+                //               ],
+                //             ),
+                //           )));
+                // }
 
                 return AlertDialog(
                     titlePadding: EdgeInsets.fromLTRB(0, 32, 0, 0),

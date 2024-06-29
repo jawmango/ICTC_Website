@@ -2,6 +2,7 @@ import 'package:ICTC_Website/main.dart';
 import 'package:ICTC_Website/models/program.dart';
 import 'package:ICTC_Website/pages/auth/login_page.dart';
 import 'package:ICTC_Website/pages/auth/signup_page.dart';
+import 'package:ICTC_Website/pages/desktop/about.dart';
 import 'package:ICTC_Website/pages/desktop/profile/profile_page.dart';
 import 'package:ICTC_Website/widgets/programPage.dart';
 import 'package:flutter/material.dart';
@@ -83,9 +84,52 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    SizedBox(width: 16),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 5.0), // Adjust margin as needed
+                      child: TextButton.icon(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const MainApp(),
+                            ),
+                          );
+                        },
+                        label: Text(
+                          "Home",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff19306B),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 5.0), // Adjust margin as needed
+                      child: TextButton.icon(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const AboutPage(),
+                            ),
+                          );
+                        },
+                        label: Text(
+                          "About",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff19306B),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 16),
                     StreamBuilder<List<Program>>(
                       stream: _stream,
                       builder: (context, snapshot) {
@@ -95,7 +139,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                             shadowColor: Colors.black,
                             shape: RoundedRectangleBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
+                                    BorderRadius.all(Radius.circular(15))),
                             padding: EdgeInsets.all(0),
                             surfaceTintColor: Colors.white,
                             elevation: 4,
@@ -139,7 +183,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                         }
                       },
                     ),
-                    SizedBox(width: 16),
+                    SizedBox(width: 560),
                     _buildButtons(context)
                   ],
                 ),
