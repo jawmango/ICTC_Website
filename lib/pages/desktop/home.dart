@@ -1,7 +1,12 @@
+import 'package:ICTC_Website/constants.dart';
+import 'package:ICTC_Website/main.dart';
 import 'package:ICTC_Website/models/program.dart';
+import 'package:ICTC_Website/pages/desktop/about.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
+import 'package:ICTC_Website/pages/desktop/profile/profile_page.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:ICTC_Website/widgets/cards/program_card.dart';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:ICTC_Website/widgets/carousel/carousel.dart';
@@ -17,6 +22,7 @@ class _HomeDesktopPageState extends State<HomeDesktopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawerdesktop(),
       appBar: AppBarDesktop(),
       body: LayoutBuilder(
         builder: (context, constraints) {

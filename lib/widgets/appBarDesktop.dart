@@ -43,6 +43,11 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
 
     return Scaffold(
       appBar: AppBar(
+         leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();}
+         ),
         primary: true,
         automaticallyImplyLeading: false,
         toolbarHeight: 70,
@@ -87,48 +92,6 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(width: 16),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 5.0), // Adjust margin as needed
-                      child: TextButton.icon(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const MainApp(),
-                            ),
-                          );
-                        },
-                        label: Text(
-                          "Home",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xff19306B),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 16),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 5.0), // Adjust margin as needed
-                      child: TextButton.icon(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const AboutPage(),
-                            ),
-                          );
-                        },
-                        label: Text(
-                          "About",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xff19306B),
-                          ),
-                        ),
-                      ),
-                    ),
                     SizedBox(width: 16),
                     StreamBuilder<List<Program>>(
                       stream: _stream,
@@ -183,7 +146,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                         }
                       },
                     ),
-                    SizedBox(width: 560),
+                    SizedBox(width: 16),
                     _buildButtons(context)
                   ],
                 ),

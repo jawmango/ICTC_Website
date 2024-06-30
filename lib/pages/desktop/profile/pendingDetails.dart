@@ -1,5 +1,6 @@
 import 'package:ICTC_Website/pages/desktop/footer.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import '../Placer.dart';
 
@@ -14,6 +15,7 @@ class _PendingDetailsState extends State<PendingDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawerdesktop(),
       appBar: AppBarDesktop(),
       body: SingleChildScrollView(
         child: Column(

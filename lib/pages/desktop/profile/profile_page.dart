@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:intl/intl.dart';
 import 'package:ICTC_Website/models/course.dart';
 import 'package:ICTC_Website/models/student.dart';
@@ -182,6 +183,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawerdesktop(),
         appBar: AppBarDesktop(),
         backgroundColor: Colors.white24,
         body: SingleChildScrollView(
@@ -189,8 +191,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  
                   children: [
                     buildStudentDetails(),
                   ],

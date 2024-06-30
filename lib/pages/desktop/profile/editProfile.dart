@@ -2,6 +2,7 @@ import 'package:ICTC_Website/models/student.dart';
 import 'package:ICTC_Website/pages/desktop/profile/editProfileForm.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 
 class EditProfile extends StatefulWidget {
@@ -17,6 +18,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawerdesktop(),
       appBar: AppBarDesktop(),
       body: SingleChildScrollView(
         child: Padding(

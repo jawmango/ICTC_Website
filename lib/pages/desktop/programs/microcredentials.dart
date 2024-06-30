@@ -2,6 +2,7 @@ import 'package:ICTC_Website/models/course.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:ICTC_Website/widgets/cards/course_card.dart';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -21,6 +22,7 @@ class _MicrocredentialsPageState extends State<MicrocredentialsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawerdesktop(),
       appBar: AppBarDesktop(),
       body: SingleChildScrollView(
         child: Expanded(
