@@ -34,7 +34,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        color: Colors.white,
+
         elevation: 4,
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         child: Padding(
