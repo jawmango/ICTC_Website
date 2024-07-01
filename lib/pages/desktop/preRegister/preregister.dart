@@ -1,4 +1,5 @@
 import 'package:ICTC_Website/models/register.dart';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:intl/intl.dart';
@@ -77,6 +78,7 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawerdesktop(),
       appBar: AppBarDesktop(),
       body: SingleChildScrollView(
         child: Column(

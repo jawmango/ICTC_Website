@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:intl/intl.dart';
 import 'package:ICTC_Website/models/course.dart';
 import 'package:ICTC_Website/models/student.dart';
@@ -182,15 +183,15 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawerdesktop(),
         appBar: AppBarDesktop(),
-        backgroundColor: Colors.white24,
+        backgroundColor: Colors. grey[30],
         body: SingleChildScrollView(
           child: Container(
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  
                   children: [
                     buildStudentDetails(),
                   ],
@@ -199,7 +200,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 250, 250, 250),
+              color: Colors.grey[30],
               border: Border.all(color: const Color.fromARGB(38, 0, 0, 0)),
             ),
           ),
@@ -244,9 +245,19 @@ class _ProfilePageState extends State<ProfilePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                pendingCard(context, student),
-                ongoingCard(context, student),
-                completedCard(context, student),
+                SizedBox(width: 20),
+                Card(
+                  color: Colors.white,
+                  elevation: 3,
+                  child: pendingCard(context, student)),
+                Card(
+                  color: Colors.white,
+                  elevation: 3,
+                  child: ongoingCard(context, student)),
+                Card(
+                  color: Colors.white,
+                  elevation: 3,
+                  child: completedCard(context, student)),
                 //completedCard(context, student)
               ],
             ),
@@ -259,19 +270,23 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget pendingCard(BuildContext context, Student student) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          'Pending Courses',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
+        SizedBox(height: 20),
+        Container(
+          margin: EdgeInsets.only(left: 20),
+          child: Text(
+            'Pending Courses',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
         Container(
           height: MediaQuery.of(context).size.height * 0.1,
           width: MediaQuery.of(context).size.width * 0.5,
-          margin: EdgeInsets.only(top: 10, bottom: 0),
+          margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
           child: FutureBuilder(
             future: getPendingCourses(student),
             builder: (context, snapshot) {
@@ -307,53 +322,57 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget createPendingText(Course course, Student student) {
     return Row(
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width * 0.15,
-          margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
-          height: 80,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(83, 255, 102, 102),
-            border: Border.all(color: const Color.fromARGB(51, 0, 0, 0), width: 0.5),
-            borderRadius: BorderRadius.all(Radius.circular(5.0)),
-          ),
-          child: InkWell(
-            onTap: () async {
-              await showDialog<void>(
-                  barrierLabel: 'Pending Course Details',
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (context) {
-                    return buildPendingDialog(course, student);
-                  }
-                  //context: context, builder: (context) => buildPendingDialog(course)
-                  );
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        course.title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                          " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
+        Card(
+          
+          elevation: 5,
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.15,
+            margin: EdgeInsets.only(top: 0, bottom: 5, left: 5),
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: const Color.fromARGB(51, 0, 0, 0), width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            ),
+            child: InkWell(
+              onTap: () async {
+                await showDialog<void>(
+                    barrierLabel: 'Pending Course Details',
+                    barrierDismissible: true,
+                    context: context,
+                    builder: (context) {
+                      return buildPendingDialog(course, student);
+                    }
+                    //context: context, builder: (context) => buildPendingDialog(course)
+                    );
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          course.title,
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500))
-                    ],
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                            " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w500))
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -513,19 +532,23 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget ongoingCard(BuildContext context, Student student) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          'Ongoing Courses',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
+        SizedBox(height: 20),
+        Container(
+          margin: EdgeInsets.only(left: 20),
+          child: Text(
+            'Ongoing Courses',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
         Container(
           height: MediaQuery.of(context).size.height * 0.1,
           width: MediaQuery.of(context).size.width * 0.5,
-          margin: EdgeInsets.only(top: 10, bottom: 0),
+          margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
           child: FutureBuilder(
             future: getOngoingCourses(student),
             builder: (context, snapshot) {
@@ -559,60 +582,63 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget createOngoingText(Course course, Student student) {
-    return Row(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width * 0.15,
-          margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
-          height: 80,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(150, 255, 221, 126),
-            border: Border.all(color: Colors.black38, width: 0.5),
-            borderRadius: BorderRadius.all(Radius.circular(5.0)),
-          ),
-          child: InkWell(
-            onTap: () async {
-              await showDialog<void>(
-                  barrierLabel: 'Ongoing Course Details',
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (context) {
-                    return buildOngoingDialog(course, student);
-                  }
-                  //context: context, builder: (context) => buildOngoingDialog(course)
-                  );
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        course.title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
+    return Card(
+      elevation: 5,
+      child: Row(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.15,
+            margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.black38, width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            ),
+            child: InkWell(
+              onTap: () async {
+                await showDialog<void>(
+                    barrierLabel: 'Ongoing Course Details',
+                    barrierDismissible: true,
+                    context: context,
+                    builder: (context) {
+                      return buildOngoingDialog(course, student);
+                    }
+                    //context: context, builder: (context) => buildOngoingDialog(course)
+                    );
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          course.title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Text(
-                        " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500),
-                      )
-                    ],
+                        Text(
+                          " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -752,19 +778,23 @@ class _ProfilePageState extends State<ProfilePage> {
 Widget completedCard(BuildContext context, Student student) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          'Completed Courses',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
+        SizedBox(height: 20),
+        Container(
+          margin: EdgeInsets.only(left: 20),
+          child: Text(
+            'Completed Courses',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
         Container(
           height: MediaQuery.of(context).size.height * 0.1,
           width: MediaQuery.of(context).size.width * 0.5,
-          margin: EdgeInsets.only(top: 10, bottom: 0),
+          margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
           child: FutureBuilder(
             future: getCompletedCourses(student),
             builder: (context, snapshot) {
@@ -798,60 +828,63 @@ Widget completedCard(BuildContext context, Student student) {
   }
 
   Widget createCompletedText(Course course, Student student) {
-    return Row(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width * 0.15,
-          margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
-          height: 80,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(110, 95, 255, 113),
-            border: Border.all(color: Colors.black38, width: 0.5),
-            borderRadius: BorderRadius.all(Radius.circular(5.0)),
-          ),
-          child: InkWell(
-            onTap: () async {
-              await showDialog<void>(
-                  barrierLabel: 'Completed Course Details',
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (context) {
-                    return buildCompletedDialog(course, student);
-                  }
-                  //context: context, builder: (context) => buildOngoingDialog(course)
-                  );
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        course.title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
+    return Card(
+      elevation: 5,
+      child: Row(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.15,
+            margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.black38, width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            ),
+            child: InkWell(
+              onTap: () async {
+                await showDialog<void>(
+                    barrierLabel: 'Completed Course Details',
+                    barrierDismissible: true,
+                    context: context,
+                    builder: (context) {
+                      return buildCompletedDialog(course, student);
+                    }
+                    //context: context, builder: (context) => buildOngoingDialog(course)
+                    );
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          course.title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Text(
-                        " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500),
-                      )
-                    ],
+                        Text(
+                          " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

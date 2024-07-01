@@ -2,6 +2,7 @@ import 'package:ICTC_Website/models/student.dart';
 import 'package:ICTC_Website/pages/desktop/profile/attendedDetails.dart';
 import 'package:ICTC_Website/pages/desktop/profile/pendingDetails.dart';
 import 'package:ICTC_Website/pages/desktop/profile/profileDetails.dart';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
@@ -31,6 +32,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawerdesktop(),
       appBar: AppBarDesktop(),
       body: SingleChildScrollView(
         child: Column(
