@@ -1,5 +1,6 @@
 import 'package:ICTC_Website/pages/desktop/styles.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:ICTC_Website/models/program.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
@@ -16,7 +17,6 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
       appBar: AppBarDesktop(),
       body: LayoutBuilder(
         builder: (context, constraints) {

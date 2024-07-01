@@ -1,6 +1,7 @@
 import 'package:ICTC_Website/pages/desktop/footer.dart';
 import 'package:ICTC_Website/pages/desktop/placer.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 
 class AttendedDetails extends StatefulWidget {
@@ -14,6 +15,7 @@ class _AttendedDetailsState extends State<AttendedDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawerdesktop(),
       appBar: AppBarDesktop(),
       body: SingleChildScrollView(
         child: Column(
