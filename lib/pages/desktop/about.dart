@@ -8,6 +8,7 @@ import 'package:ICTC_Website/widgets/cards/program_card.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:ICTC_Website/widgets/carousel/carousel.dart';
+import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -15,6 +16,7 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[50],
       appBar: AppBarDesktop(),
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -22,8 +24,10 @@ class AboutPage extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  _buildHeroSmallScreen(context),
-                  _buildPrograms(context),
+                  _buildHero(context),
+                  _buildMission(context),
+                  _ourTeam(context),
+                  
                   FooterWidget(),
                 ],
               ),
@@ -33,7 +37,9 @@ class AboutPage extends StatelessWidget {
               child: Column(
                 children: [
                   _buildHero(context),
-                  _buildPrograms(context),
+                  _buildMission(context),
+                  _ourTeam(context),
+                   
                   FooterWidget(),
                 ],
               ),
@@ -45,254 +51,336 @@ class AboutPage extends StatelessWidget {
   }
 }
 
+
 Widget _buildHero(context) {
   return Stack(
     children: [
       Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-          image: AssetImage('assets/images/bg12.jpg'),
-          fit: BoxFit.cover,
-          ),
-        ) ,
+        color: Colors.grey[50],
         alignment: Alignment.topLeft,
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.85,
+        height: MediaQuery.of(context).size.height * 0.82,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(180, 15, 15, 15),
+          padding: EdgeInsets.fromLTRB(70, 0, 15, 20), // Adjust right padding for logo position
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 200),
-                child: Column(
+              // Text content in the left/middle side
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(right: 20), // Adjust padding as needed
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
                           Text(
-                            "MISSION",
-                            style: TextStyle(
-                              fontSize: 55,
-                              fontWeight: FontWeight.bold,
-                              color : Color.fromARGB(255, 255, 200, 73),
-                            )
+                            "Ateneo ",
+                            style: AppTextStyles.displayLargeBlue,
+                          ),
+                          Text(
+                            "Information ",
+                            style: AppTextStyles.displayLargeYellow,
+                          ),
+                          Text(
+                            "and",
+                            style: AppTextStyles.displayLargeBlue,
                           ),
                         ],
-                      ),
-                      SizedBox(
-                        height: 10,
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "ICTC seeks to share in the",
-                            style: AppTextStyles.bodyLarge,
+                            "Communications Technology",
+                            style: AppTextStyles.displayLargeBlue,
                           ),
                           Text(
-                            "University mission in achieving",
-                            style: AppTextStyles.bodyLarge,
-                          ),
-                          Text(
-                            "academic excellence through",
-                            style: AppTextStyles.bodyLarge,
-                          ),
-                          Text(
-                            "developing, designing, and",
-                            style: AppTextStyles.bodyLarge,
-                          ),
-                          Text(
-                            "delivering quality ICT programs",
-                            style: AppTextStyles.bodyLarge,
-                          ),
-                          Text(
-                            "responsive to the needs of the",
-                            style: AppTextStyles.bodyLarge,
-                          ),
-                          Text(
-                            "community.",
-                            style: AppTextStyles.bodyLarge,
+                            "Center",
+                            style: AppTextStyles.displayLargeBlue,
                           ),
                         ],
                       ),
-                    ]),
-              ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 275, 130, 0),
-                    child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                    Row(
-                      children: [
-                        Text(
-                          "VISION",
-                           style: TextStyle(
-                           fontSize: 55,
-                           fontWeight: FontWeight.bold,
-                          color : Color.fromARGB(255, 255, 200, 73),
-                          )
-                         ),
-                          ],
-                      ),
                       SizedBox(
-                        height: 10,
+                        height: 25,
                       ),
-                       Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "The globally recognized Center offering",
-                            style: AppTextStyles.bodyLarge,
+                            "Information and Communications Technology ",
+                            style: AppTextStyles.displaySmallBlack,
                           ),
                           Text(
-                            "and delivering quality Information &",
-                            style: AppTextStyles.bodyLarge,
+                            "Center is Ateneo de Naga's Professional School ",
+                            style: AppTextStyles.displaySmallBlack,
                           ),
                           Text(
-                            "Communications Technology programs for",
-                            style: AppTextStyles.bodyLarge,
+                            "for ICT and the Premier IT Training Center in ",
+                            style: AppTextStyles.displaySmallBlack,
                           ),
                           Text(
-                            " continuing education and career academy",
-                            style: AppTextStyles.bodyLarge,
-                          ),
-                          Text(
-                            "courses in the region. The regional hub in",
-                            style: AppTextStyles.bodyLarge,
-                          ),
-                          Text(
-                            "providing world-class industry-centric trainings",
-                            style: AppTextStyles.bodyLarge,
-                          ),
-                          Text(
-                            "and certifications. The leader in providing",
-                            style: AppTextStyles.bodyLarge,
-                          ),
-                          Text(
-                            " conferences on emerging technological trends ",
-                            style: AppTextStyles.bodyLarge,
-                          ),
-                          Text(
-                            "powering the university into academic excellence.",
-                            style: AppTextStyles.bodyLarge,
+                            "Southern Luzon, Philippines.",
+                            style: AppTextStyles.displaySmallBlack,
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
+              ),
+              Container(
+                // margin: EdgeInsets.only(right: 30), 
+                margin: EdgeInsets.fromLTRB(0, 70, 30, 0), // Adjust margin as needed
+                child: Image.asset(
+                  'assets/images/logo_ictc.png',
+                  height: 700, // Adjust height as needed
+                  width: 700, // Adjust width as needed
+                ),
+              ),
             ],
           ),
         ),
       ),
-                    Container( //center logo
-                      margin: EdgeInsets.fromLTRB(0, 110, 0, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/logo_ictc.png',
-                          height: MediaQuery.of(context).size.height * 0.6,
-                          width: MediaQuery.of(context).size.width*0.6,
-                        ),
-                      ],
-                    ),
-                  ),
     ],
   );
 }
 
-//mobile
-Widget _buildHeroSmallScreen(context) {
-  return Container(
-    alignment: Alignment.topLeft,
-    width: MediaQuery.of(context).size.width,
-    height: 750,
-    color: Color(0xff19306B),
-    child: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "BE A ",
-                style: Theme.of(context).textTheme.displayMedium,
-              ),
-              Text("CERTIFIED", style: Theme.of(context).textTheme.titleMedium),
-            ],
-          ),
-          Text(
-            "PROFESSIONAL.",
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+Widget _buildMission(context) {
+  return Stack(
+    children: [
+      Container(
+        color: Color(0xff19306B),
+        alignment: Alignment.topLeft,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.75,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(70, 0, 15, 140), // Adjust right padding for logo position
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                "Seize the opportunity to gain a competitive edge by mastering",
-                style: Theme.of(context).textTheme.labelSmall,
+              // Text content in the left/middle side
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(right: 20), // Adjust padding as needed
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "MISSION ",
+                            style: AppTextStyles.displayLargeYellow,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "ICTC seeks to share in the University mission in ",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "achieving  academic excellence through",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "developing, designing, and delivering quality ICT",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "programs responsive to the needs of the",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "community.",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                "essential skills. Unlock new horizons of expertise, from hands-on",
-                style: Theme.of(context).textTheme.labelSmall,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                "learning experiences to industry-relevant skills. Delve into",
-                style: Theme.of(context).textTheme.labelSmall,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                "specialized courses with Ateneo ICTC.",
-                style: Theme.of(context).textTheme.labelSmall,
-              ),
-              SizedBox(
-                height: 8,
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(0, 160, 50, 0),// Adjust padding as needed
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "VISION",
+                            style: AppTextStyles.displayLargeYellow,
+                          ),
+                        ],
+                      ),  
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "The globally recognized Center offering and",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "delivering quality Information & Communications",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "Technology programs for continuing education",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "and career academy courses in the region. The ",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "regional hub in providing world-class industry-",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "centric trainings and certifications. The leader in",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "providing conferences on emerging technological",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "trends powering the university into academic",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                          Text(
+                            "excellence.",
+                            style: AppTextStyles.displaySmallWhite,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
-          )
-        ],
+          ),
+        ),
       ),
-    ),
+    ],
   );
 }
 
-Widget _buildPrograms(context) {
-  return Container(
-    color: Color(0xfffff0),
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text("Our Team",
-              style: Theme.of(context).textTheme.bodyLarge),
-          SizedBox(height: 50),
-          
-        ],
+Widget _ourTeam(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20.0),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+
+        child: Column(
+          children: [
+            Text(
+                "OUR TEAM",
+                style: AppTextStyles.displayLargeBlueTeam,
+              ),
+              SizedBox(height: 20.0),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [ // Adding space at the beginning
+                _buildTeamMemberCard(
+                  'Michelle Elija B. Santos',
+                  'DIRECTOR',
+                  'assets/images/background.png', // Replace with actual image path
+                  imageSize: 300.0, // Adjust image size as needed
+                  cardWidth: 400.0,
+                  cardHeigth: 500.0,  // Adjust card width as needed
+                ),
+                SizedBox(width: 5.0), // Adding space between cards
+            
+                _buildTeamMemberCard(
+                  'Aaron G. Infeliz',
+                  'MARKETING SPECIALIST',
+                  'assets/images/background.png', // Replace with actual image path
+                  imageSize: 300.0, // Adjust image size as needed
+                  cardWidth: 400.0,
+                  cardHeigth: 500.0, // Adjust card width as needed
+                ),
+                SizedBox(width: 10.0), // Adding space at the end
+              ],
+            ),
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
+
+  Widget _buildTeamMemberCard(
+    String name,
+    String position,
+    String imagePath, {
+    double imageSize = 350.0,
+    double cardWidth = 200.0,
+    double cardHeigth = 200.0,
+  }) {
+    return Card(
+      elevation: 3.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.zero,
+      ),
+      child: Container(
+        color: Color.fromARGB(244, 244, 244, 244),
+        width: cardWidth,
+        height: cardHeigth,
+        padding: EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Image at the top
+            ClipRRect(
+              borderRadius: BorderRadius.circular(200.0),
+              child: Image.asset(
+                imagePath,
+                width: imageSize,
+                height: imageSize,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 12.0),
+            // Name below the image
+            Text(
+              name,
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 6.0),
+            // Position below the name
+            Text(
+              position,
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.grey[600],
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
