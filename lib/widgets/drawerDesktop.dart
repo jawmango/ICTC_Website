@@ -32,20 +32,16 @@ class Drawerdesktop extends StatelessWidget {
                 children: [
                   DrawerHeader(
                     decoration: BoxDecoration(color: Color(0xff19306B)),
-                    child: TextButton.icon(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => MainApp(),
-                          ),
-                        );
-                      },
-                      icon: Image.asset(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children:[  
+                      Image.asset(
                         'assets/images/logo_ictc.png',
                         width: 45,
                         height: 45,
                       ),
-                      label: Text(
+                      Text(
                         "Ateneo ICTC",
                         style: TextStyle(
                           fontSize: 20,
@@ -53,15 +49,17 @@ class Drawerdesktop extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                    ),
+                      ]
+                    )
                   ),
                   ListTile(
-                    leading: Icon(Icons.home),
+                    leading: Icon(Icons.home,
+                    color: Color(0xFF19306B)),
                     title: Text(
                       'Home',
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     onTap: () {
@@ -73,12 +71,13 @@ class Drawerdesktop extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.person),
+                    leading: Icon(Icons.person, 
+                      color: Color(0xFF19306B)),
                     title: Text(
                       'Profile',
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     onTap: () {
@@ -90,12 +89,13 @@ class Drawerdesktop extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.supervisor_account),
+                    leading: Icon(Icons.supervisor_account,
+                    color: Color(0xFF19306B)),
                     title: Text(
                       'About',
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     onTap: () {
@@ -107,12 +107,13 @@ class Drawerdesktop extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.book),
+                    leading: Icon(Icons.book,
+                    color: Color(0xFF19306B)),
                     title: Text(
                       'Programs',
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     onTap: () {
@@ -123,14 +124,15 @@ class Drawerdesktop extends StatelessWidget {
                       );
                     },
                   ),
+                  SizedBox(height: 510),
                   Divider(), // Divider for visual separation
                   ListTile(
-                    leading: Icon(Icons.logout),
+                    leading: Icon(Icons.logout, color: Color(0xFF19306B)),
                     title: Text(
                       'Logout',
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     onTap: () async {
@@ -152,20 +154,16 @@ class Drawerdesktop extends StatelessWidget {
                 children: [
                   DrawerHeader(
                     decoration: BoxDecoration(color: Color(0xff19306B)),
-                    child: TextButton.icon(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => MainApp(),
-                          ),
-                        );
-                      },
-                      icon: Image.asset(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children:[  
+                      Image.asset(
                         'assets/images/logo_ictc.png',
                         width: 45,
                         height: 45,
                       ),
-                      label: Text(
+                      Text(
                         "Ateneo ICTC",
                         style: TextStyle(
                           fontSize: 20,
@@ -173,15 +171,16 @@ class Drawerdesktop extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                    ),
+                      ]
+                    )
                   ),
                   ListTile(
-                    leading: Icon(Icons.home),
+                    leading: Icon(Icons.home, color: Color(0xFF19306B)),
                     title: Text(
                       'Home',
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     onTap: () {
@@ -193,12 +192,12 @@ class Drawerdesktop extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.supervisor_account),
+                    leading: Icon(Icons.supervisor_account, color: Color(0xFF19306B)),
                     title: Text(
                       'About',
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     onTap: () {
@@ -210,12 +209,12 @@ class Drawerdesktop extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.book),
+                    leading: Icon(Icons.book, color: Color(0xFF19306B)),
                     title: Text(
                       'Programs',
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     onTap: () {
@@ -226,17 +225,19 @@ class Drawerdesktop extends StatelessWidget {
                       );
                     },
                   ),
+                  SizedBox(height: 560),
                   Divider(),
                   ListTile(
-                    leading: Icon(Icons.login),
+                    leading: Icon(Icons.login, color: Color(0xFF19306B)),
                     title: Text(
                       'Login',
                       style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     onTap: () {
+                      Navigator.pop(context);
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => LoginPage(), // Replace with correct page
