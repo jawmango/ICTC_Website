@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:ICTC_Website/widgets/drawerDesktop.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:ICTC_Website/models/course.dart';
 import 'package:ICTC_Website/models/student.dart';
@@ -185,24 +186,26 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
         drawer: Drawerdesktop(),
         appBar: AppBarDesktop(),
-        backgroundColor: Colors. grey[30],
+        // backgroundColor: const Color.fromARGB(255, 146, 58, 58),
         body: SingleChildScrollView(
           child: Container(
             child: Column(
               children: [
                 Row(
-                  
                   children: [
                     buildStudentDetails(),
                   ],
                 ),
-              FooterWidget(),
+                FooterWidget(),
               ],
             ),
-          decoration: BoxDecoration(
-              color: Colors.grey[30],
-              border: Border.all(color: const Color.fromARGB(38, 0, 0, 0)),
-            ),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/profile_bg.png'), // Replace with your image path
+                      fit: BoxFit.cover,
+                    ),
+                    border: Border.all(color: const Color.fromARGB(38, 0, 0, 0)),
+                  ),
           ),
         ));
   }
@@ -240,21 +243,30 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           SizedBox(width: 20),
           Padding(
-            padding: const EdgeInsets.only(top: 50),
+            padding: const EdgeInsets.only(top: 40),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(width: 20),
                 Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0), // Adjust the radius as needed
+                ),
                   color: Colors.white,
                   elevation: 3,
                   child: pendingCard(context, student)),
                 Card(
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0), // Adjust the radius as needed
+                ),
                   color: Colors.white,
                   elevation: 3,
                   child: ongoingCard(context, student)),
                 Card(
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0), // Adjust the radius as needed
+                ),
                   color: Colors.white,
                   elevation: 3,
                   child: completedCard(context, student)),
@@ -268,71 +280,69 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget pendingCard(BuildContext context, Student student) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(height: 20),
-        Container(
-          margin: EdgeInsets.only(left: 20),
-          child: Text(
-            'Pending Courses',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600,
-            ),
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SizedBox(height: 20),
+      Container(
+        margin: EdgeInsets.only(left: 55),
+        child: Text(
+          'Pending Courses',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        Container(
-          height: MediaQuery.of(context).size.height * 0.1,
-          width: MediaQuery.of(context).size.width * 0.5,
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
-          child: FutureBuilder(
-            future: getPendingCourses(student),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-
-              final courseList = snapshot.data!;
-
-              if (courseList.isEmpty) {
-                return Center(
-                  child: Text("No registered courses!"),
-                );
-              }
-
-              return ListView.builder(
-                shrinkWrap: true,
-                itemCount: courseList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return createPendingText(courseList[index], student);
-                },
+      ),
+      Container(
+        height: MediaQuery.of(context).size.height * 0.19,
+        width: MediaQuery.of(context).size.width * 0.63,
+        margin: EdgeInsets.only(left: 50, right: 10, bottom: 15),
+        child: FutureBuilder(
+          future: getPendingCourses(student),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
               );
-            },
-          ),
+            }
+
+            final courseList = snapshot.data!;
+
+            if (courseList.isEmpty) {
+              return Center(
+                child: Text("No registered courses!"),
+              );
+            }
+
+            return ListView.builder(
+              shrinkWrap: true,
+              itemCount: courseList.length,
+              scrollDirection:Axis.horizontal,
+              itemBuilder: (context, index) {
+                return createPendingText(courseList[index], student);
+              },
+            );
+          },
         ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
+}
+
 
   Widget createPendingText(Course course, Student student) {
     return Row(
       children: [
-        Card(
-          
-          elevation: 5,
-          child: Container(
+           Container(
             width: MediaQuery.of(context).size.width * 0.15,
             margin: EdgeInsets.only(top: 0, bottom: 5, left: 5),
-            height: 80,
+            height: 120,
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: const Color.fromARGB(51, 0, 0, 0), width: 0.5),
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              color: Colors.grey[100],
+              border: Border.all(color: Color.fromARGB(51, 187, 58, 58), width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(7.0)),
             ),
             child: InkWell(
               onTap: () async {
@@ -353,17 +363,19 @@ class _ProfilePageState extends State<ProfilePage> {
                   Expanded(
                     flex: 1,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        SizedBox(height:35),
                         Text(
                           course.title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
+                        SizedBox(height:5),
                         Text(
                             " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
                             style: TextStyle(
@@ -375,7 +387,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
-        ),
       ],
     );
   }
@@ -531,12 +542,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget ongoingCard(BuildContext context, Student student) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 20),
         Container(
-          margin: EdgeInsets.only(left: 20),
+          margin: EdgeInsets.only(left: 50),
           child: Text(
             'Ongoing Courses',
             style: TextStyle(
@@ -546,9 +557,9 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
         Container(
-          height: MediaQuery.of(context).size.height * 0.1,
-          width: MediaQuery.of(context).size.width * 0.5,
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
+          height: MediaQuery.of(context).size.height * 0.19,
+          width: MediaQuery.of(context).size.width * 0.63,
+          margin: EdgeInsets.only(left: 50, right: 10, bottom: 15),
           child: FutureBuilder(
             future: getOngoingCourses(student),
             builder: (context, snapshot) {
@@ -582,18 +593,16 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget createOngoingText(Course course, Student student) {
-    return Card(
-      elevation: 5,
-      child: Row(
+    return Row(
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.15,
-            margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
-            height: 80,
+            margin: EdgeInsets.only(top: 0, bottom: 5, left: 5),
+            height: 120,
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.black38, width: 0.5),
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              color: Colors.grey[100],
+              border: Border.all(color: Color.fromARGB(51, 187, 58, 58), width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(7.0)),
             ),
             child: InkWell(
               onTap: () async {
@@ -614,17 +623,20 @@ class _ProfilePageState extends State<ProfilePage> {
                   Expanded(
                     flex: 1,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      
                       children: [
+                        SizedBox(height:35),
                         Text(
                           course.title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
+                        SizedBox(height:5),
                         Text(
                           " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
                           style: TextStyle(
@@ -638,7 +650,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ],
-      ),
     );
   }
 
@@ -777,12 +788,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
 Widget completedCard(BuildContext context, Student student) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 20),
         Container(
-          margin: EdgeInsets.only(left: 20),
+          margin: EdgeInsets.only(left: 50),
           child: Text(
             'Completed Courses',
             style: TextStyle(
@@ -792,9 +803,9 @@ Widget completedCard(BuildContext context, Student student) {
           ),
         ),
         Container(
-          height: MediaQuery.of(context).size.height * 0.1,
-          width: MediaQuery.of(context).size.width * 0.5,
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
+          height: MediaQuery.of(context).size.height * 0.19,
+          width: MediaQuery.of(context).size.width * 0.63,
+          margin: EdgeInsets.only(left: 50, right: 10, bottom: 15),
           child: FutureBuilder(
             future: getCompletedCourses(student),
             builder: (context, snapshot) {
@@ -828,19 +839,17 @@ Widget completedCard(BuildContext context, Student student) {
   }
 
   Widget createCompletedText(Course course, Student student) {
-    return Card(
-      elevation: 5,
-      child: Row(
+    return Row(
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.15,
             margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
-            height: 80,
+            height: 120,
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.black38, width: 0.5),
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            ),
+                color: Colors.grey[100],
+                border: Border.all(color: Color.fromARGB(51, 187, 58, 58), width: 0.5),
+                borderRadius: BorderRadius.all(Radius.circular(7.0)),
+              ),
             child: InkWell(
               onTap: () async {
                 await showDialog<void>(
@@ -860,17 +869,19 @@ Widget completedCard(BuildContext context, Student student) {
                   Expanded(
                     flex: 1,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        SizedBox(height:35),
                         Text(
                           course.title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
+                        SizedBox(height:5),
                         Text(
                           " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
                           style: TextStyle(
@@ -884,7 +895,6 @@ Widget completedCard(BuildContext context, Student student) {
             ),
           ),
         ],
-      ),
     );
   }
 

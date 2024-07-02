@@ -22,15 +22,15 @@ class _EditProfileState extends State<EditProfile> {
       appBar: AppBarDesktop(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 8, 8, 20),
+          padding: const EdgeInsets.fromLTRB(8, 8, 8, 14),
           child: Column(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.35,
+                width: MediaQuery.of(context).size.width * 0.3,
                 child: Expanded(
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(35),
+                      borderRadius: BorderRadius.circular(0),
                     ),
                     color: Colors.white,
                     elevation: 2,
@@ -50,6 +50,7 @@ class _EditProfileState extends State<EditProfile> {
                               Text(
                                 "Edit Profile",
                                 style: TextStyle(
+                                  color: Color(0xff19306B),
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                 ),
