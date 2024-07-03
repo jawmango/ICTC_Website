@@ -49,7 +49,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.2,
-                height: MediaQuery.of(context).size.height * 0.535,
+                height: MediaQuery.of(context).size.height * 0.530,
                 child: Container(
                   margin: EdgeInsets.only(top: 10),
                   child: Column(
@@ -115,7 +115,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                       ),
                       Center(
                         child: Container(
-                          margin: EdgeInsets.only(bottom: 42),
+                          margin: EdgeInsets.only(bottom: 58),
                           width: MediaQuery.of(context).size.width * 0.2,
                           child: Center(
                             child: Text(
@@ -181,7 +181,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 6,
                       ),
                       Material(
                         // color: Colors.black12,

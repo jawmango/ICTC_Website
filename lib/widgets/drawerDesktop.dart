@@ -2,6 +2,7 @@ import 'package:ICTC_Website/main.dart';
 import 'package:ICTC_Website/models/program.dart';
 import 'package:ICTC_Website/pages/auth/login_page.dart';
 import 'package:ICTC_Website/pages/desktop/about.dart';
+import 'package:ICTC_Website/pages/desktop/morePrograms.dart';
 import 'package:ICTC_Website/pages/desktop/profile/profile_page.dart';
 import 'package:ICTC_Website/widgets/programPage.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +120,7 @@ class Drawerdesktop extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => AboutPage(), // Replace with correct page
+                          builder: (context) => ProgramPages(), // Replace with correct page
                         ),
                       );
                     },
@@ -220,7 +221,7 @@ class Drawerdesktop extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => AboutPage(), // Replace with correct page
+                          builder: (context) => ProgramPages(), // Replace with correct page
                         ),
                       );
                     },

@@ -2,11 +2,13 @@ import 'package:ICTC_Website/pages/auth/login_page.dart';
 import 'package:ICTC_Website/pages/auth/signup_page.dart';
 import 'package:ICTC_Website/pages/desktop/about.dart';
 import 'package:ICTC_Website/pages/desktop/home.dart';
+import 'package:ICTC_Website/pages/desktop/morePrograms.dart';
 import 'package:ICTC_Website/pages/mobile/home.dart';
 import 'package:ICTC_Website/pages/desktop/programs/google_certified_educators.dart';
 import 'package:ICTC_Website/pages/desktop/programs/microcredentials.dart';
 import 'package:ICTC_Website/pages/desktop/programs/skillup.dart';
 import 'package:ICTC_Website/supabase_options.dart';
+import 'package:ICTC_Website/widgets/programPage.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -77,6 +79,7 @@ class MyApp extends StatelessWidget {
           '/signup': (context) => const SignupPage(),
           '/login': (context) => const LoginPage(),
           '/about': (context) => const AboutPage(),
+          '/programs': (context) => const ProgramPages(),
           '/microcredentials': (context) => const MicrocredentialsPage(),
           '/skillup': (context) => const SkillUpPage(),
           '/google_certified_educators': (context) =>

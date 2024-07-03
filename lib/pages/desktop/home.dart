@@ -41,6 +41,7 @@ class _HomeDesktopPageState extends State<HomeDesktopPage> {
               child: Column(
                 children: [
                   _buildHero(context),
+                  FeaturedPrograms(),
                   _buildPrograms(context),
                   FooterWidget(),
                 ],
@@ -52,6 +53,124 @@ class _HomeDesktopPageState extends State<HomeDesktopPage> {
     );
   }
 }
+class FeaturedPrograms extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final List<Map<String, String>> programs = [
+      {
+        'imageUrl': 'assets/images/mc.png',
+        'description': 'Description of Program 1',
+      },
+      {
+        'imageUrl': 'assets/images/skillup.png',
+        'description': 'Description of Program 2',
+      },
+      {
+        'imageUrl': 'assets/images/gce.png',
+        'description': 'Description of Program 3',
+      },
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Featured Programs',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue[900],
+            ),
+          ),
+          Text(
+            'We have courses that span dozens of domains and all different levels of commitment. Here are three of our most popular ones for',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: const Color.fromARGB(255, 0, 0, 0),
+            ),
+          ),
+          Text(
+            ' students, but there are plenty more where they came from.',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: const Color.fromARGB(255, 0, 0, 0),
+            ),
+          ),
+          SizedBox(height: 16),
+          Column(
+            children: programs.map((program) => _buildProgramItem(program)).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProgramItem(Map<String, String> program) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Container(
+        height: 320,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(255, 43, 42, 42).withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.blue[700],
+                  borderRadius: BorderRadius.horizontal(left: Radius.circular(8)),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.horizontal(left: Radius.circular(8)),
+                  child: Image.network(
+                    program['imageUrl']!,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.horizontal(right: Radius.circular(8)),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      program['description']!,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.blue[800],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 Widget _buildHero(context) {
   return Stack(
