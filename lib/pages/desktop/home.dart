@@ -41,7 +41,8 @@ class _HomeDesktopPageState extends State<HomeDesktopPage> {
               child: Column(
                 children: [
                   _buildHero(context),
-                  FeaturedPrograms(),
+                  // FeaturedPrograms(),
+                  A1HomeFeatprograms(),
                   _buildPrograms(context),
                   FooterWidget(),
                 ],
@@ -53,124 +54,391 @@ class _HomeDesktopPageState extends State<HomeDesktopPage> {
     );
   }
 }
-class FeaturedPrograms extends StatelessWidget {
+
+class A1HomeFeatprograms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> programs = [
-      {
-        'imageUrl': 'assets/images/mc.png',
-        'description': 'Description of Program 1',
-      },
-      {
-        'imageUrl': 'assets/images/skillup.png',
-        'description': 'Description of Program 2',
-      },
-      {
-        'imageUrl': 'assets/images/gce.png',
-        'description': 'Description of Program 3',
-      },
-    ];
-
-    return Padding(
-      padding: const EdgeInsets.all(30.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Featured Programs',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue[900],
-            ),
-          ),
-          Text(
-            'We have courses that span dozens of domains and all different levels of commitment. Here are three of our most popular ones for',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: const Color.fromARGB(255, 0, 0, 0),
-            ),
-          ),
-          Text(
-            ' students, but there are plenty more where they came from.',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: const Color.fromARGB(255, 0, 0, 0),
-            ),
-          ),
-          SizedBox(height: 16),
-          Column(
-            children: programs.map((program) => _buildProgramItem(program)).toList(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildProgramItem(Map<String, String> program) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
-        height: 320,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromARGB(255, 43, 42, 42).withOpacity(0.3),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue[700],
-                  borderRadius: BorderRadius.horizontal(left: Radius.circular(8)),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.horizontal(left: Radius.circular(8)),
-                  child: Image.network(
-                    program['imageUrl']!,
-                    fit: BoxFit.cover,
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+          width: 1980,
+          height: 1580,
+          decoration: BoxDecoration(color: Colors.grey[30]),
+          child: Stack(
+            children: [
+              Positioned( // Google Cert Container
+                left: 330,
+                top: 1121,
+                child: Container(
+                  width: 1320,
+                  height: 364,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF153FAA),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    shadows: [
+                      BoxShadow(
+                        color: Color(0x0C000000),
+                        blurRadius: 4,
+                        offset: Offset(0, 4),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: -3,
+                        top: 0,
+                        child: Container(
+                          width: 662,
+                          height: 364,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            shadows: [
+                              BoxShadow(
+                                color: Color(0x72032E9D),
+                                blurRadius: 2,
+                                offset: Offset(0, 2),
+                                spreadRadius: 3,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 142,
+                        top: 48,
+                        child: Container(
+                          width: 373,
+                          height: 268,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage("assets/images/gce.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 731,
+                        top: 90,
+                        child: Container(
+                          height: 185,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 539,
+                                child: Text(
+                                  'Google Certified Educators Program',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 36,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                width: 506,
+                                height: 87,
+                                child: Text(
+                                  'Aids educators in preparing for the Google for Education Certified Educator examinations and individuals who would like to gain more proficiency in using the Google Workspace in their respective fields.',
+                                    style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.horizontal(right: Radius.circular(8)),
+              Positioned( // Skill up container
+                left: 330,
+                top: 714,
+                child: Container(
+                  width: 1320,
+                  height: 364,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF153FAA),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    shadows: [
+                      BoxShadow(
+                        color: Color(0x3F000000),
+                        blurRadius: 4,
+                        offset: Offset(0, 4),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 61,
+                        top: 111.50,
+                        child: Container(
+                          width: 509,
+                          height: 141,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Skill-Up Program',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 36,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w700,
+                                  height: 0,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                width: 506,
+                                height: 87,
+                                child: Text(
+                                  'Constitutes a structured sequence of educational sessions meticulously designed to impart essential and sought-after skills demanded within the contemporary market landscape.',
+                                    style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 658,
+                        top: 0,
+                        child: Container(
+                          width: 662,
+                          height: 364,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 730,
+                        top: 124,
+                        child: Container(
+                          width: 518,
+                          height: 117,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage("assets/images/skillup.png"),
+                              fit: BoxFit.fill,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(0xFFFFFFFF),
+                                blurRadius: 0,
+                                offset: Offset(0, 4),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+              ),
+              Positioned( // Micro Cred Container
+                left: 327,
+                top: 314,
+                child: Container(
+                  width: 1320,
+                  height: 364,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF153FAA),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    shadows: [
+                      BoxShadow(
+                        color: Color(0x0C000000),
+                        blurRadius: 4,
+                        offset: Offset(0, 4),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 723,
+                        top: 120,
+                        child: Container(
+                          width: 506,
+                          height: 141,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Micro Credential Program',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 36,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w700,
+                                  height: 0,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                width: 506,
+                                height: 87,
+                                child: Text(
+                                  'Short, focused, and competency-based certifications that validate specific skills and knowledge in a particular area.',
+                                    style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w500,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: -8,
+                        top: 0,
+                        child: Container(
+                          width: 662,
+                          height: 364,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            shadows: [
+                              BoxShadow(
+                                color: Color(0x6D228E46),
+                                blurRadius: 2,
+                                offset: Offset(0, 2),
+                                spreadRadius: 3,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 168,
+                        top: 3,
+                        child: Container(
+                          width: 326,
+                          height: 327,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage("assets/images/mc.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 330,
+                top: 200,
                 child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      program['description']!,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.blue[800],
+                  child: SizedBox(
+                    width: 1320,
+                    height: 110,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'We have courses that span dozens of domains and all different levels of commitment. Here are three of our most popular ones for students, but there are plenty more where they came from.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w400,
+                          height: 1.5, // Adjust line height as needed
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+
+              Positioned(
+                left: 326,
+                top: 120,
+                child: Container(
+                  width: 1292,
+                  height: 130,
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 470,
+                        child: Text(
+                          'Featured Programs',
+                          style: TextStyle(
+                            color: Color(0xFF153FAA),
+                            fontSize: 46,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w700,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
-
 
 Widget _buildHero(context) {
   return Stack(
@@ -181,7 +449,7 @@ Widget _buildHero(context) {
         height: MediaQuery.of(context).size.height * 0.7,
         color: Color(0xff19306B),
         child: Padding(
-          padding: EdgeInsets.fromLTRB(180, 15, 15, 15),
+          padding: EdgeInsets.fromLTRB(130, 15, 15, 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -337,14 +605,25 @@ Widget _buildPrograms(context) {
   return Container(
     color: Color(0xfffff0),
     child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 20), // Adjust top padding here
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Featured Programs",
-              style: Theme.of(context).textTheme.bodyLarge),
-          SizedBox(height: 50),
+          Padding(
+            padding: const EdgeInsets.only(top: 00), // Adjust top padding for the title
+            child: Text(
+              "Programs",
+              style: TextStyle(
+                color: Color(0xFF153FAA),
+                fontSize: 46,
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w700,
+                height: 0,
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
           FutureBuilder(
             future: Supabase.instance.client
                 .from('program')
@@ -402,3 +681,4 @@ Widget _buildPrograms(context) {
     ),
   );
 }
+
