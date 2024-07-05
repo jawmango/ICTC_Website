@@ -294,24 +294,24 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               SizedBox(width: 8),
-              ListTile(
-                    leading: Icon(Icons.login, color: Color(0xFF19306B)),
-                    title: Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
+              OutlinedButton(
+                style: filledStyle,
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const SignupPage(),
                     ),
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => LoginPage(), // Replace with correct page
-                        ),
-                      );
-                    },
+                  );
+                },
+                child: Text(
+                  "Sign Up",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.onSecondary,
+                    fontSize: 14,
                   ),
+                ),
+              ),
             ],
           );
         }
