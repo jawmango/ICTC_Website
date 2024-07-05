@@ -137,12 +137,12 @@ class _ProfileFormState extends State<ProfileForm> {
               return null;
             },
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 25),
           Center(
             child: ElevatedButton(
               onPressed: saveProfile,
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                 backgroundColor: Color(0xff19306B),
               ),
               child: Text(

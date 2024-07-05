@@ -49,7 +49,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.2,
-                height: MediaQuery.of(context).size.height * 0.530,
+                height: MediaQuery.of(context).size.height * 0.535,
                 child: Container(
                   margin: EdgeInsets.only(top: 10),
                   child: Column(
@@ -60,7 +60,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                         // IMAGE
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                         width: MediaQuery.of(context).size.width * 0.2,
-                        height: 240,
+                        height: 260,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                             color: Colors.white,
@@ -115,7 +115,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                       ),
                       Center(
                         child: Container(
-                          margin: EdgeInsets.only(bottom: 58),
+                          margin: EdgeInsets.only(bottom: 20),
                           width: MediaQuery.of(context).size.width * 0.2,
                           child: Center(
                             child: Text(
@@ -232,8 +232,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
       //   borderRadius: BorderRadius.circular(16),
       // ),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.30,
-        height: MediaQuery.of(context).size.height * 0.6,
+        width: MediaQuery.of(context).size.width * 0.25,
+        height: MediaQuery.of(context).size.height * 0.49,
         child: Padding(
           padding: EdgeInsets.all(20),
           child: Column(

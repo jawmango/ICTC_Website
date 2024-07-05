@@ -10,6 +10,7 @@ import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:ICTC_Website/widgets/carousel/carousel.dart';
+import 'package:ICTC_Website/pages/desktop/morePrograms.dart';
 
 class HomeDesktopPage extends StatefulWidget {
   const HomeDesktopPage({super.key});
@@ -69,7 +70,7 @@ class A1HomeFeatprograms extends StatelessWidget {
             children: [
               Positioned( // Google Cert Container
                 left: 330,
-                top: 1121,
+                top: 1056,
                 child: Container(
                   width: 1320,
                   height: 364,
@@ -174,7 +175,7 @@ class A1HomeFeatprograms extends StatelessWidget {
               ),
               Positioned( // Skill up container
                 left: 330,
-                top: 714,
+                top: 649,
                 child: Container(
                   width: 1320,
                   height: 364,
@@ -277,7 +278,7 @@ class A1HomeFeatprograms extends StatelessWidget {
               ),
               Positioned( // Micro Cred Container
                 left: 327,
-                top: 314,
+                top: 254,
                 child: Container(
                   width: 1320,
                   height: 364,
@@ -380,7 +381,7 @@ class A1HomeFeatprograms extends StatelessWidget {
               ),
               Positioned(
                 left: 330,
-                top: 200,
+                top: 120,
                 child: Center(
                   child: SizedBox(
                     width: 1320,
@@ -405,7 +406,7 @@ class A1HomeFeatprograms extends StatelessWidget {
 
               Positioned(
                 left: 326,
-                top: 120,
+                top: 45,
                 child: Container(
                   width: 1292,
                   height: 130,
@@ -506,7 +507,31 @@ Widget _buildHero(context) {
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                         SizedBox(
-                          height: 8,
+                          height: 15,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ProgramPages(),
+                              ),
+                            );
+                          },
+                              style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                              backgroundColor: Color(0xFFF3B503), // Yellow-orange color
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0), // Rounded corners
+                              ),
+                            ),
+                          child: Text(
+                            "Register Now!",
+                                style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xff19306B),
+                              ),
+                          ),
                         ),
                       ],
                     ),

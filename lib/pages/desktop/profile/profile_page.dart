@@ -899,15 +899,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                                 ),
                                 TextSpan(
-                                  text: course.evalink,
+                                  text: course.evaLink,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     color: Color.fromARGB(255, 42, 134, 255), // same as default color
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () async {
-                                      final url = course.evalink;
-                                      if (await canLaunch(url)) {
+                                      final url = course.evaLink;
+                                      if (await canLaunch(url!)) {
                                         await launch(url);
                                       } else {
                                         throw 'Could not launch $url';
