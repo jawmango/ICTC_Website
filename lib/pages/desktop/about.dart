@@ -305,7 +305,7 @@ Widget _ourTeam(BuildContext context) {
                 _buildTeamMemberCard(
                   'Michelle Elija B. Santos',
                   'DIRECTOR',
-                  'assets/images/background.png', // Replace with actual image path
+                  'assets/images/director.png', // Replace with actual image path
                   imageSize: 300.0, // Adjust image size as needed
                   cardWidth: 400.0,
                   cardHeigth: 500.0,  // Adjust card width as needed
@@ -315,7 +315,7 @@ Widget _ourTeam(BuildContext context) {
                 _buildTeamMemberCard(
                   'Aaron G. Infeliz',
                   'MARKETING SPECIALIST',
-                  'assets/images/background.png', // Replace with actual image path
+                  'assets/images/marketing.png', // Replace with actual image path
                   imageSize: 300.0, // Adjust image size as needed
                   cardWidth: 400.0,
                   cardHeigth: 500.0, // Adjust card width as needed

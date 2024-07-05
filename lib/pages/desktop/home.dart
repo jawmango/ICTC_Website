@@ -517,13 +517,13 @@ Widget _buildHero(context) {
                               ),
                             );
                           },
-                              style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                              backgroundColor: Color(0xFFF3B503), // Yellow-orange color
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(0), // Rounded corners
-                              ),
-                            ),
+                          style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                          backgroundColor: Color(0xFFF3B503), // Yellow-orange color
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0), // Rounded corners
+                          ),
+                        ),
                           child: Text(
                             "Register Now!",
                                 style: TextStyle(
