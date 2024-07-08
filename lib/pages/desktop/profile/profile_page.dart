@@ -337,6 +337,9 @@ class _ProfilePageState extends State<ProfilePage> {
     return Row(
       children: [
            Container(
+        Card(
+          elevation: 3,
+          child: Container(
             width: MediaQuery.of(context).size.width * 0.15,
             margin: EdgeInsets.only(top: 0, bottom: 5, left: 5),
             height: 120,
@@ -611,7 +614,11 @@ class _ProfilePageState extends State<ProfilePage> {
       children: [
         SizedBox(height: 20),
         Container(
+
           margin: EdgeInsets.only(left: 50),
+
+          margin: EdgeInsets.only(bottom: 10),
+
           child: Text(
             'Ongoing Courses',
             style: TextStyle(
@@ -662,7 +669,11 @@ class _ProfilePageState extends State<ProfilePage> {
           Container(
             width: MediaQuery.of(context).size.width * 0.15,
             margin: EdgeInsets.only(top: 0, bottom: 5, left: 5),
+
             height: 120,
+
+            height: 80,
+
             decoration: BoxDecoration(
               color: Colors.grey[100],
               border: Border.all(color: Color.fromARGB(139, 46, 46, 46), width: 0.5),
@@ -1006,8 +1017,13 @@ Widget completedCard(BuildContext context, Student student) {
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.15,
+
             margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
             height: 120,
+
+            margin: EdgeInsets.only(top: 0, bottom: 5, left: 5),
+            height: 80,
+
             decoration: BoxDecoration(
                 color: Colors.grey[100],
                 border: Border.all(color: Color.fromARGB(139, 46, 46, 46), width: 0.5),

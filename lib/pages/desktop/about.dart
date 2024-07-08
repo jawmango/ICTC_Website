@@ -3,6 +3,14 @@ import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
+import 'package:ICTC_Website/widgets/appBarDesktop.dart';
+import 'package:ICTC_Website/widgets/cards/program_card.dart';
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:ICTC_Website/widgets/carousel/carousel.dart';
+import 'package:flutter/material.dart';
+import 'package:ICTC_Website/widgets/drawerDesktop.dart';
+
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
