@@ -1,15 +1,10 @@
-import 'package:ICTC_Website/constants.dart';
-import 'package:ICTC_Website/main.dart';
 import 'package:ICTC_Website/models/program.dart';
-import 'package:ICTC_Website/pages/desktop/about.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
-import 'package:ICTC_Website/pages/desktop/profile/profile_page.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:ICTC_Website/widgets/cards/program_card.dart';
 import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:ICTC_Website/widgets/carousel/carousel.dart';
 import 'package:ICTC_Website/pages/desktop/morePrograms.dart';
 
 class HomeDesktopPage extends StatefulWidget {
@@ -509,30 +504,7 @@ Widget _buildHero(context) {
                         SizedBox(
                           height: 15,
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => ProgramPages(),
-                              ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                          backgroundColor: Color(0xFFF3B503), // Yellow-orange color
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(0), // Rounded corners
-                          ),
-                        ),
-                          child: Text(
-                            "Register Now!",
-                                style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xff19306B),
-                              ),
-                          ),
-                        ),
+                        
                       ],
                     ),
                   ]),
@@ -540,7 +512,7 @@ Widget _buildHero(context) {
           ),
         ),
       ),
-      Row(
+      Row( 
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -552,6 +524,49 @@ Widget _buildHero(context) {
           ),
         ],
       ),
+      Container(
+        margin: EdgeInsets.fromLTRB(130, 500, 0, 0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ProgramPages(),
+                  ),
+                );
+              },
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all<EdgeInsets>(
+                  EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                ),
+                backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                  if (states.contains(MaterialState.hovered)) {
+                    return Color.fromARGB(255, 219, 157, 1); // New color when hovered
+                  }
+                  return Color(0xFFF3B503); // Default color
+                }),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0), // Adjust border radius as needed
+                  ),
+                ),
+              ),
+              child: Text(
+                "Pre-register Now!",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF19306B),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+
     ],
   );
 }

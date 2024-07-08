@@ -2,15 +2,8 @@ import 'package:ICTC_Website/pages/desktop/styles.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
-import 'package:ICTC_Website/models/program.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
-import 'package:ICTC_Website/widgets/appBarDesktop.dart';
-import 'package:ICTC_Website/widgets/cards/program_card.dart';
-import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:ICTC_Website/widgets/carousel/carousel.dart';
-import 'package:flutter/material.dart';
-import 'package:ICTC_Website/widgets/drawerDesktop.dart';
+
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
 
@@ -70,7 +63,7 @@ Widget _buildHero(context) {
               // Text content in the left/middle side
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(right: 20), // Adjust padding as needed
+                  padding: EdgeInsets.only(left: 50), // Adjust padding as needed
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +129,7 @@ Widget _buildHero(context) {
               ),
               Container(
                 // margin: EdgeInsets.only(right: 30), 
-                margin: EdgeInsets.fromLTRB(0, 70, 30, 0), // Adjust margin as needed
+                margin: EdgeInsets.fromLTRB(0, 20, 90, 0), // Adjust margin as needed
                 child: Image.asset(
                   'assets/images/logo_ictc.png',
                   height: 700, // Adjust height as needed
@@ -160,17 +153,16 @@ Widget _buildMission(context) {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.75,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(70, 0, 15, 140), // Adjust right padding for logo position
+          padding: EdgeInsets.fromLTRB(170, 170, 15, 15), // Adjust right padding for logo position
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Text content in the left/middle side
               Expanded(
                 child: Container(
                   padding: EdgeInsets.only(right: 20), // Adjust padding as needed
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
@@ -216,9 +208,9 @@ Widget _buildMission(context) {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(0, 160, 50, 0),// Adjust padding as needed
+                  // padding: EdgeInsets.fromLTRB(0, 160, 50, 0),// Adjust padding as needed
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
@@ -233,8 +225,8 @@ Widget _buildMission(context) {
                         height: 16,
                       ),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             "The globally recognized Center offering and",
