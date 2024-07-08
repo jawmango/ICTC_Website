@@ -525,7 +525,7 @@ Widget _buildHero(context) {
         ],
       ),
       Container(
-        margin: EdgeInsets.fromLTRB(130, 500, 0, 0),
+        margin: EdgeInsets.fromLTRB(130, 495, 0, 0),
         child: Align(
           alignment: Alignment.centerLeft,
           child: MouseRegion(
