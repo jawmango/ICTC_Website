@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:ICTC_Website/widgets/drawerDesktop.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:ICTC_Website/models/course.dart';
 import 'package:ICTC_Website/models/student.dart';
@@ -13,6 +14,7 @@ import 'package:ICTC_Website/pages/desktop/footer.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:ICTC_Website/pages/desktop/styles.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -185,24 +187,26 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
         drawer: Drawerdesktop(),
         appBar: AppBarDesktop(),
-        backgroundColor: Colors. grey[30],
+        // backgroundColor: const Color.fromARGB(255, 146, 58, 58),
         body: SingleChildScrollView(
           child: Container(
             child: Column(
               children: [
                 Row(
-                  
                   children: [
                     buildStudentDetails(),
                   ],
                 ),
-              FooterWidget(),
+                FooterWidget(),
               ],
             ),
-          decoration: BoxDecoration(
-              color: Colors.grey[30],
-              border: Border.all(color: const Color.fromARGB(38, 0, 0, 0)),
-            ),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/profile_bg.png'), // Replace with your image path
+                      fit: BoxFit.cover,
+                    ),
+                    border: Border.all(color: const Color.fromARGB(38, 0, 0, 0)),
+                  ),
           ),
         ));
   }
@@ -240,21 +244,30 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           SizedBox(width: 20),
           Padding(
-            padding: const EdgeInsets.only(top: 50),
+            padding: const EdgeInsets.only(top: 40),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(width: 20),
                 Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0), // Adjust the radius as needed
+                ),
                   color: Colors.white,
                   elevation: 3,
                   child: pendingCard(context, student)),
                 Card(
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0), // Adjust the radius as needed
+                ),
                   color: Colors.white,
                   elevation: 3,
                   child: ongoingCard(context, student)),
                 Card(
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0), // Adjust the radius as needed
+                ),
                   color: Colors.white,
                   elevation: 3,
                   child: completedCard(context, student)),
@@ -268,70 +281,72 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget pendingCard(BuildContext context, Student student) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(height: 20),
-        Container(
-          margin: EdgeInsets.only(left: 20),
-          child: Text(
-            'Pending Courses',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600,
-            ),
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SizedBox(height: 20),
+      Container(
+        margin: EdgeInsets.only(left: 55),
+        child: Text(
+          'Pending Courses',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        Container(
-          height: MediaQuery.of(context).size.height * 0.1,
-          width: MediaQuery.of(context).size.width * 0.5,
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
-          child: FutureBuilder(
-            future: getPendingCourses(student),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-
-              final courseList = snapshot.data!;
-
-              if (courseList.isEmpty) {
-                return Center(
-                  child: Text("No registered courses!"),
-                );
-              }
-
-              return ListView.builder(
-                shrinkWrap: true,
-                itemCount: courseList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return createPendingText(courseList[index], student);
-                },
+      ),
+      Container(
+        height: MediaQuery.of(context).size.height * 0.19,
+        width: MediaQuery.of(context).size.width * 0.63,
+        margin: EdgeInsets.only(left: 50, right: 10, bottom: 15),
+        child: FutureBuilder(
+          future: getPendingCourses(student),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
               );
-            },
-          ),
+            }
+
+            final courseList = snapshot.data!;
+
+            if (courseList.isEmpty) {
+              return Center(
+                child: Text("No registered courses!"),
+              );
+            }
+
+            return ListView.builder(
+              shrinkWrap: true,
+              itemCount: courseList.length,
+              scrollDirection:Axis.horizontal,
+              itemBuilder: (context, index) {
+                return createPendingText(courseList[index], student);
+              },
+            );
+          },
         ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
+}
+
 
   Widget createPendingText(Course course, Student student) {
     return Row(
       children: [
+           Container(
         Card(
           elevation: 3,
           child: Container(
             width: MediaQuery.of(context).size.width * 0.15,
             margin: EdgeInsets.only(top: 0, bottom: 5, left: 5),
-            height: 80,
+            height: 120,
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: const Color.fromARGB(51, 0, 0, 0), width: 0.5),
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              color: Colors.grey[100],
+              border: Border.all(color: Color.fromARGB(139, 46, 46, 46),width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(7.0)),
             ),
             child: InkWell(
               onTap: () async {
@@ -352,17 +367,19 @@ class _ProfilePageState extends State<ProfilePage> {
                   Expanded(
                     flex: 1,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        SizedBox(height:35),
                         Text(
                           course.title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
+                        SizedBox(height:5),
                         Text(
                             " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
                             style: TextStyle(
@@ -374,7 +391,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
-        ),
       ],
     );
   }
@@ -416,72 +432,112 @@ class _ProfilePageState extends State<ProfilePage> {
                   Center(
                     child: Container(
                       margin: EdgeInsets.only(bottom: 10),
-                    width: MediaQuery.of(context).size.width * 0.2,
-                    height: 360,
-                    decoration: BoxDecoration(
+                      width: MediaQuery.of(context).size.width * 0.2,
+                      height: 360,
+                      decoration: BoxDecoration(
                         color: Colors.white,
-                        border: Border.all(color: Colors.black12)),
-                      child: FutureBuilder(
-                                    future:getCourseUrl(course) , 
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                                      }
-                                      if (snapshot.hasData) {
-                      final url = snapshot.data!;
-                      return Image.network(
-                        url,
-                        fit: BoxFit.cover, height: 200, width: 150,
-                      );
-                                      }
-                                      return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image(image: AssetImage('assets/images/logo_ictc.png'), fit: BoxFit.cover, height: 200, width: 150,),
-                          SizedBox(height:20  ,),
-                          Text('No image attached.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black54))
-                        ],
+                        border: Border.all(color: Colors.black12),
                       ),
-                                      );
-                                    }
+                      child: FutureBuilder(
+                        future: getCourseUrl(course),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          if (snapshot.hasData) {
+                            final url = snapshot.data!;
+                            return Image.network(
+                              url,
+                              fit: BoxFit.cover,
+                              height: 200,
+                              width: 150,
+                            );
+                          }
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image(
+                                  image: AssetImage('assets/images/logo_ictc.png'),
+                                  fit: BoxFit.cover,
+                                  height: 200,
+                                  width: 150,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  'No image attached.',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black54,
                                   ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
-                  Text(
-                    "Title: ${course.title}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Title: ',
+                          style: AppTextStyles.displaySmallBlackDialog,
+                        ),
+                        TextSpan(
+                          text: '${course.title}'),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
-                    "Cost: ₱ ${course.cost}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
+                  SizedBox(height: 8),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Cost: ',
+                          style: AppTextStyles.displaySmallBlackDialog,
+                        ),
+                        TextSpan(text:'₱''${course.cost}'),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
-                    "Description: ${HtmlUnescape().convert(course.description ?? "No description provided.")}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
+                  SizedBox(height: 8),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Schedule: ',
+                          style: AppTextStyles.displaySmallBlackDialog,
+                        ),
+                        TextSpan(
+                          text:
+                              '${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)}',
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
-                    "Schedule: ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 8),
                   FutureBuilder(
                     future: checkIfBill(student, course),
                     builder: (context, snapshot) {
@@ -491,16 +547,27 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       }
 
-                      return Text(
-                        "Biliing Statement: ${snapshot.data! ? "Sent" : "Pending"}",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
+                      return RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                          children: [
+                            TextSpan(
+                              text: 'Billing Statement: ',
+                              style: AppTextStyles.displaySmallBlackDialog,
+                            ),
+                            TextSpan(
+                              text: '${snapshot.data! ? "Sent" : "Pending"}',
+                            ),
+                          ],
                         ),
                       );
                     },
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 8),
                   FutureBuilder(
                     future: checkIfApproved(student, course),
                     builder: (context, snapshot) {
@@ -510,11 +577,22 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       }
 
-                      return Text(
-                        "Payment Status: ${snapshot.data! ? "Paid" : "Pending"}",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
+                      return RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black,
+                      ),
+                          children: [
+                            TextSpan(
+                              text: 'Payment Status: ',
+                              style: AppTextStyles.displaySmallBlackDialog,
+                            ),
+                            TextSpan(
+                              text: '${snapshot.data! ? "Paid" : "Pending"}',
+                            ),
+                          ],
                         ),
                       );
                     },
@@ -522,6 +600,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             )
+
           ],
         ),
       ),
@@ -530,12 +609,16 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget ongoingCard(BuildContext context, Student student) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 20),
         Container(
+
+          margin: EdgeInsets.only(left: 50),
+
           margin: EdgeInsets.only(bottom: 10),
+
           child: Text(
             'Ongoing Courses',
             style: TextStyle(
@@ -545,9 +628,9 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
         Container(
-          height: MediaQuery.of(context).size.height * 0.1,
-          width: MediaQuery.of(context).size.width * 0.5,
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
+          height: MediaQuery.of(context).size.height * 0.19,
+          width: MediaQuery.of(context).size.width * 0.63,
+          margin: EdgeInsets.only(left: 50, right: 10, bottom: 15),
           child: FutureBuilder(
             future: getOngoingCourses(student),
             builder: (context, snapshot) {
@@ -581,18 +664,20 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget createOngoingText(Course course, Student student) {
-    return Card(
-      elevation: 5,
-      child: Row(
+    return Row(
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.15,
             margin: EdgeInsets.only(top: 0, bottom: 5, left: 5),
+
+            height: 120,
+
             height: 80,
+
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.black38, width: 0.5),
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              color: Colors.grey[100],
+              border: Border.all(color: Color.fromARGB(139, 46, 46, 46), width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(7.0)),
             ),
             child: InkWell(
               onTap: () async {
@@ -613,17 +698,20 @@ class _ProfilePageState extends State<ProfilePage> {
                   Expanded(
                     flex: 1,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      
                       children: [
+                        SizedBox(height:35),
                         Text(
                           course.title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
+                        SizedBox(height:5),
                         Text(
                           " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
                           style: TextStyle(
@@ -637,7 +725,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ],
-      ),
     );
   }
 
@@ -675,22 +762,98 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Title: ${course.title}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 10),
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: 360,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.black12)),
+                      child: FutureBuilder(
+                                    future:getCourseUrl(course), 
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                                      }
+                                      if (snapshot.hasData) {
+                      final url = snapshot.data!;
+                      return Image.network(
+                        url,
+                        fit: BoxFit.cover, height: 200, width: 150,
+                      );
+                                      }
+                                      return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image(image: AssetImage('assets/images/logo_ictc.png'), fit: BoxFit.cover, height: 200, width: 150,),
+                          SizedBox(height:8,),
+                          Text('No image attached.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black54))
+                        ],
+                      ),
+                                      );
+                                    }
+                                  ),
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
-                    "Schedule: ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Title: ',
+                          style: AppTextStyles.displaySmallBlackDialog,
+                        ),
+                        TextSpan(
+                          text: '${course.title}'),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 8),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Cost: ',
+                          style: AppTextStyles.displaySmallBlackDialog,
+                        ),
+                        TextSpan(text:'₱''${course.cost}'),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Schedule: ',
+                          style: AppTextStyles.displaySmallBlackDialog,
+                        ),
+                        TextSpan(
+                          text:
+                              '${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)}',
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 8),
                   FutureBuilder(
                       future: checkIfAttended(student, course),
                       builder: (context, snapshot) {
@@ -700,16 +863,26 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: CircularProgressIndicator(),
                           );
                         }
-
-                        return Text(
-                          "Attendance Status: ${snapshot.data! ? "Complete" : "Pending"}",
+                        return RichText(
+                        text: TextSpan(
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        );
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                          children: [
+                            TextSpan(
+                              text: 'Attendance Status: ',
+                              style: AppTextStyles.displaySmallBlackDialog,
+                            ),
+                            TextSpan(
+                              text: '${snapshot.data! ? "Complete" : "Pending"}',
+                            ),
+                          ],
+                        ),
+                      );
                       }),
-                      SizedBox(height: 20),
+                      SizedBox(height: 8),
                      FutureBuilder(
                       future: checkIfAttended(student, course),
                       builder: (context, snapshot) {
@@ -723,28 +896,29 @@ class _ProfilePageState extends State<ProfilePage> {
                           return RichText(
                                 text: TextSpan(
                                 style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w200,
-                                color: Colors.black87, // default color
+                                fontSize: 20,
+                                fontWeight: FontWeight.w300,
+                              color: Colors.black,// default color
                               ),
                               children: [
                                 TextSpan(
                                   text: "Evaluation Link: ",
                                   style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w100,                              
+                                  color: Color.fromARGB(255, 0, 0, 0), // Replace with your desired color
+    fontSize: 24, // Example of setting font size
+    fontWeight: FontWeight.w500,                     
                                 ),
                                 ),
                                 TextSpan(
-                                  text: course.evalink,
+                                  text: course.evaLink,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     color: Color.fromARGB(255, 42, 134, 255), // same as default color
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () async {
-                                      final url = course.evalink;
-                                      if (await canLaunch(url)) {
+                                      final url = course.evaLink;
+                                      if (await canLaunch(url!)) {
                                         await launch(url);
                                       } else {
                                         throw 'Could not launch $url';
@@ -755,13 +929,25 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           );
                         } else {
-                          return Text(
-                            "Evaluation Link: Please complete the attendance first",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                          return RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                          children: [
+                            TextSpan(
+                              text: 'Evaluation Link: ',
+                              style: AppTextStyles.displaySmallBlackDialog,
                             ),
-                          );
+                            TextSpan(
+                              text: 'Please complete the attendance',
+                            ),
+                          ],
+                        ),
+                      );
+
                         }
                       },
                     ),
@@ -776,12 +962,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
 Widget completedCard(BuildContext context, Student student) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 20),
         Container(
-          margin: EdgeInsets.only(left: 20),
+          margin: EdgeInsets.only(left: 50),
           child: Text(
             'Completed Courses',
             style: TextStyle(
@@ -791,9 +977,9 @@ Widget completedCard(BuildContext context, Student student) {
           ),
         ),
         Container(
-          height: MediaQuery.of(context).size.height * 0.1,
-          width: MediaQuery.of(context).size.width * 0.5,
-          margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
+          height: MediaQuery.of(context).size.height * 0.19,
+          width: MediaQuery.of(context).size.width * 0.63,
+          margin: EdgeInsets.only(left: 50, right: 10, bottom: 15),
           child: FutureBuilder(
             future: getCompletedCourses(student),
             builder: (context, snapshot) {
@@ -827,19 +1013,22 @@ Widget completedCard(BuildContext context, Student student) {
   }
 
   Widget createCompletedText(Course course, Student student) {
-    return Card(
-      elevation: 5,
-      child: Row(
+    return Row(
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.15,
+
+            margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
+            height: 120,
+
             margin: EdgeInsets.only(top: 0, bottom: 5, left: 5),
             height: 80,
+
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.black38, width: 0.5),
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            ),
+                color: Colors.grey[100],
+                border: Border.all(color: Color.fromARGB(139, 46, 46, 46), width: 0.5),
+                borderRadius: BorderRadius.all(Radius.circular(7.0)),
+              ),
             child: InkWell(
               onTap: () async {
                 await showDialog<void>(
@@ -859,17 +1048,19 @@ Widget completedCard(BuildContext context, Student student) {
                   Expanded(
                     flex: 1,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        SizedBox(height:35),
                         Text(
                           course.title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
+                        SizedBox(height:5),
                         Text(
                           " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
                           style: TextStyle(
@@ -883,7 +1074,6 @@ Widget completedCard(BuildContext context, Student student) {
             ),
           ),
         ],
-      ),
     );
   }
 
@@ -921,41 +1111,98 @@ Widget completedCard(BuildContext context, Student student) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Title: ${course.title}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 10),
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: 360,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.black12)),
+                      child: FutureBuilder(
+                                    future:getCourseUrl(course), 
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                                      }
+                                      if (snapshot.hasData) {
+                      final url = snapshot.data!;
+                      return Image.network(
+                        url,
+                        fit: BoxFit.cover, height: 200, width: 150,
+                      );
+                                      }
+                                      return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image(image: AssetImage('assets/images/logo_ictc.png'), fit: BoxFit.cover, height: 200, width: 150,),
+                          SizedBox(height:20  ,),
+                          Text('No image attached.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black54))
+                        ],
+                      ),
+                                      );
+                                    }
+                                  ),
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
-                    "Schedule: ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)}",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Title: ',
+                          style: AppTextStyles.displaySmallBlackDialog,
+                        ),
+                        TextSpan(
+                          text: '${course.title}'),
+                      ],
                     ),
                   ),
-                  // SizedBox(height: 20),
-                  // FutureBuilder(
-                  //     future: checkEval(student, course),
-                  //     builder: (context, snapshot) {
-                  //       if (snapshot.connectionState ==
-                  //           ConnectionState.waiting) {
-                  //         return Center(
-                  //           child: CircularProgressIndicator(),
-                  //         );
-                  //       }
-
-                  //       return Text(
-                  //         "Course Status: ${snapshot.data! ? "Completed" : "Complete Evaluation"}",
-                  //         style: TextStyle(
-                  //           fontSize: 18,
-                  //           fontWeight: FontWeight.w400,
-                  //         ),
-                  //       );
-                  //     }),
-                  SizedBox(height: 20),
+                  SizedBox(height: 8),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Cost: ',
+                          style: AppTextStyles.displaySmallBlackDialog,
+                        ),
+                        TextSpan(text:'₱''${course.cost}'),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Schedule: ',
+                          style: AppTextStyles.displaySmallBlackDialog,
+                        ),
+                        TextSpan(
+                          text:
+                              '${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)}',
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 8),
                   FutureBuilder(
                     future: checkCert(student, course),
                     builder: (context, snapshot) {
@@ -964,12 +1211,22 @@ Widget completedCard(BuildContext context, Student student) {
                           child: CircularProgressIndicator(),
                         );
                       }
-
-                      return Text(
-                        "Certificate: ${snapshot.data! ? "Sent" : "Pending"}",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
+                      return RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                          children: [
+                            TextSpan(
+                              text: 'Certificate: ',
+                              style: AppTextStyles.displaySmallBlackDialog,
+                            ),
+                            TextSpan(
+                              text: '${snapshot.data! ? "Sent" : "Pending"}',
+                            ),
+                          ],
                         ),
                       );
                     },
@@ -982,189 +1239,4 @@ Widget completedCard(BuildContext context, Student student) {
       ),
     );
   }
-  // Widget completedCard(BuildContext context, Student student) {
-  //   return Column(
-  //     mainAxisAlignment: MainAxisAlignment.center,
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: [
-  //       Text(
-  //         'Completed Courses',
-  //         style: TextStyle(
-  //           fontSize: 24,
-  //           fontWeight: FontWeight.w600,
-  //         ),
-  //       ),
-  //       Container(
-  //         height: MediaQuery.of(context).size.height * 0.1,
-  //         width: MediaQuery.of(context).size.width * 0.5,
-  //         margin: EdgeInsets.only(top: 10, bottom: 0),
-  //         child: FutureBuilder(
-  //           future: getOngoingCourses(student),
-  //           builder: (context, snapshot) {
-  //             if (snapshot.connectionState == ConnectionState.waiting) {
-  //               return Center(
-  //                 child: CircularProgressIndicator(),
-  //               );
-  //             }
-
-  //             final courseList = snapshot.data!;
-
-  //             if (courseList.isEmpty) {
-  //               return Center(
-  //                 child: Text("No completed courses!"),
-  //               );
-  //             }
-
-  //             return ListView.builder(
-  //               shrinkWrap: true,
-  //               itemCount: courseList.length,
-  //               scrollDirection: Axis.horizontal,
-  //               itemBuilder: (context, index) {
-  //                 return createCompletedText(courseList[index], student);
-  //               },
-  //             );
-  //           },
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
-
-  // Widget createCompletedText(Course course, Student student) {
-  //   return Row(
-  //     children: [
-  //       Container(
-  //         width: MediaQuery.of(context).size.width * 0.15,
-  //         margin: EdgeInsets.only(top: 10, bottom: 0, left: 5),
-  //         height: 80,
-  //         decoration: BoxDecoration(
-  //           color: Colors.white24,
-  //           border: Border.all(color: Colors.black38, width: 0.5),
-  //           borderRadius: BorderRadius.all(Radius.circular(5.0)),
-  //         ),
-  //         child: InkWell(
-  //           onTap: () async {
-  //             await showDialog<void>(
-  //                 barrierLabel: 'Ongoing Course Details',
-  //                 barrierDismissible: true,
-  //                 context: context,
-  //                 builder: (context) {
-  //                   return buildCompletedDialog(course);
-  //                 }
-  //                 //context: context, builder: (context) => buildOngoingDialog(course)
-  //                 );
-  //           },
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.center,
-  //             crossAxisAlignment: CrossAxisAlignment.center,
-  //             children: [
-  //               Expanded(
-  //                 flex: 1,
-  //                 child: Column(
-  //                   crossAxisAlignment: CrossAxisAlignment.center,
-  //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //                   children: [
-  //                     Text(
-  //                       course.title,
-  //                       textAlign: TextAlign.center,
-  //                       style: TextStyle(
-  //                         fontSize: 14,
-  //                         fontWeight: FontWeight.w600,
-  //                       ),
-  //                     ),
-  //                     Text(
-  //                       " ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)} ",
-  //                       style: TextStyle(
-  //                         fontSize: 14,
-  //                         fontWeight: FontWeight.w500
-  //                       ),
-  //                     )
-  //                   ],
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
-
-  // Widget buildCompletedDialog(Course course) {
-  //   return AlertDialog(
-  //     content: Container(
-  //       // width: MediaQuery.of(context).size.width * 0.3,
-  //       // height: MediaQuery.of(context).size.height * 0.3,
-  //       child: Column(
-  //         mainAxisSize: MainAxisSize.min,
-  //         crossAxisAlignment: CrossAxisAlignment.stretch,
-  //         children: [
-  //           Padding(
-  //             padding: const EdgeInsets.symmetric(horizontal: 20),
-  //             child: Row(
-  //               children: [
-  //                 IconButton(
-  //                   onPressed: () {
-  //                     Navigator.pop(context);
-  //                   },
-  //                   icon: Icon(Icons.arrow_back),
-  //                 ),
-  //                 Text(
-  //                   "Ongoing Course Details",
-  //                   style: TextStyle(fontSize: 30),
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //           Divider(),
-  //           SizedBox(height: 20),
-  //           Padding(
-  //             padding: const EdgeInsets.symmetric(horizontal: 20),
-  //             child: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               children: [
-  //                 Text(
-  //                   "Title: ${course.title}",
-  //                   style: TextStyle(
-  //                     fontSize: 18,
-  //                     fontWeight: FontWeight.w400,
-  //                   ),
-  //                 ),
-  //                 SizedBox(height: 20),
-  //                 Text(
-  //                   "Schedule: ${DateFormat.yMMMMd().format(course.startDate!)} - ${DateFormat.yMMMMd().format(course.endDate!)}",
-  //                   style: TextStyle(
-  //                     fontSize: 18,
-  //                     fontWeight: FontWeight.w400,
-  //                   ),
-  //                 ),
-  //                 //SizedBox(height: 20),
-  //                 // Text(
-  //                 //   "Payment Status: Paid",
-  //                 //   style: TextStyle(
-  //                 //     fontSize: 18,
-  //                 //     fontWeight: FontWeight.w400,
-  //                 //   ),
-  //                 // ),
-  //                 SizedBox(height: 20),
-  //                 //TODO: backend for the certificate
-  //                    retreive image and be able to download it
-
-  //                    Text(
-  //                      "Certificate Status: Pending",
-  //                      style: TextStyle(
-  //                        fontSize: 18,
-  //                        fontWeight: FontWeight.w400,
-  //                      ),
-  //                    ),
-  //                 ),
-  //               ],
-  //             ),
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 }

@@ -41,5 +41,11 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
   );
 
+  static const TextStyle displaySmallBlackDialog = TextStyle(
+    color: Color.fromARGB(255, 0, 0, 0), // Replace with your desired color
+    fontSize: 24, // Example of setting font size
+    fontWeight: FontWeight.w500,
+  );
+
   // Add more custom text styles as needed
 }

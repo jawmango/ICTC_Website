@@ -14,13 +14,15 @@ class Course {
   @JsonKey(name: 'trainer_id')
   int? trainerId;
 
+   @JsonKey(name: 'eval_link')
+  String? evaLink;
+
   String title;
   String? description;
   int? cost;
   String? duration;
   String? schedule;
   String? venue;
-  String evalink;
 
   @JsonKey(name: 'start_date')
   DateTime? startDate;
@@ -39,7 +41,7 @@ class Course {
     this.duration,
     this.schedule,
     this.venue,
-    required this.evalink,
+    required this.evaLink,
     this.startDate,
     this.endDate,
   });
@@ -52,7 +54,5 @@ class Course {
   String toString() {
     return title;
   }
-  String toStringEval() {
-    return evalink;
-  }
+
 }

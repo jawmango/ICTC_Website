@@ -2,6 +2,7 @@ import 'package:ICTC_Website/pages/desktop/profile/editProfileForm.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:ICTC_Website/models/student.dart';
+import 'package:flutter/widgets.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileDetails extends StatefulWidget {
@@ -37,26 +38,29 @@ class _ProfileDetailsState extends State<ProfileDetails> {
         color: Colors.white,
         elevation: 4,
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+              shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(0), // Adjust the radius as needed
+      ),
         child: Padding(
           padding: EdgeInsets.all(2.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment:
+             MainAxisAlignment.center,
             children: [
               SizedBox(
-                
                 width: MediaQuery.of(context).size.width * 0.2,
-                height: MediaQuery.of(context).size.height * .8,
+                height: MediaQuery.of(context).size.height * 0.535,
                 child: Container(
-                  margin: EdgeInsets.only(top: 60),
+                  margin: EdgeInsets.only(top: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Container(
                         // IMAGE
-                        margin: EdgeInsets.only(bottom: 10),
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                         width: MediaQuery.of(context).size.width * 0.2,
-                        height: 360,
+                        height: 260,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                             color: Colors.white,
@@ -90,6 +94,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                           },
                         ),
                       ),
+                      SizedBox(height: 20),
                       Center(
                         child: Text(
                           '${widget.student.toString()}',
@@ -110,7 +115,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                       ),
                       Center(
                         child: Container(
-                          margin: EdgeInsets.only(bottom: 10),
+                          margin: EdgeInsets.only(bottom: 20),
                           width: MediaQuery.of(context).size.width * 0.2,
                           child: Center(
                             child: Text(
@@ -123,9 +128,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                           ),
                         ),
                       ),
-                      Divider(),
                       Material(
-                        color: Colors.black12,
+                        // color: Colors.black12,
                         child: InkWell(
                           splashColor: Colors.black26,
                           onTap: () async {
@@ -150,14 +154,14 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                                 .whenComplete(() {
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text("Image uploaded successfully!")));
-          
                               setState(() {
                                 avatarUrl = getAvatarUrl();
                               });
                             });
                           },
                           child: Container(
-                            color: Colors.blue[900],
+                            color: Color.fromARGB(123, 255, 201, 40),
+                            margin:EdgeInsets.fromLTRB(5, 0, 5, 0),
                             height: 40,
                             width: MediaQuery.of(context).size.width * 0.2,
                             child: Row(
@@ -169,7 +173,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.white),
+                                      color: const Color.fromARGB(255, 0, 0, 0)),
                                 ),
                               ],
                             ),
@@ -177,10 +181,10 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 6,
                       ),
                       Material(
-                        color: Colors.black12,
+                        // color: Colors.black12,
                         child: InkWell(
                           splashColor: Colors.black26,
                           onTap: () async {
@@ -189,7 +193,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                                 builder: (context) => buildEditDialog(context));
                           },
                           child: Container(
-                            color: Colors.transparent,
+                            color: Color.fromARGB(123, 255, 201, 40),
+                            margin:EdgeInsets.fromLTRB(5, 0, 5, 0),
                             height: 40,
                             width: MediaQuery.of(context).size.width * 0.2,
                             child: Row(
@@ -208,8 +213,6 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                           ),
                         ),
                       ),
-                     
-                      
                     ],
                   ),
                 ),
@@ -225,12 +228,12 @@ class _ProfileDetailsState extends State<ProfileDetails> {
     return Dialog(
       backgroundColor: Colors.white,
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      // shape: RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.circular(16),
+      // ),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.30,
-        height: MediaQuery.of(context).size.height * 0.6,
+        width: MediaQuery.of(context).size.width * 0.25,
+        height: MediaQuery.of(context).size.height * 0.49,
         child: Padding(
           padding: EdgeInsets.all(20),
           child: Column(
