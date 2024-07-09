@@ -130,11 +130,13 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<List<Course>> getPendingCourses(Student student) async {
+    final today = DateTime.now();
     final query = await Supabase.instance.client
         .from('course')
         .select('*, registration!inner(*)')
         .eq('registration.student_id', student.id)
         .eq('registration.is_approved', false)
+        .gt('start_date', today.toIso8601String())
         .withConverter(
           (data) => data
               .map(
@@ -342,7 +344,7 @@ class _ProfilePageState extends State<ProfilePage> {
             height: 120,
             decoration: BoxDecoration(
               color: Colors.grey[100],
-              border: Border.all(color: Color.fromARGB(139, 46, 46, 46),width: 0.5),
+              border: Border.all(color: Color.fromARGB(232, 218, 0, 0), width: 0.8),
               borderRadius: BorderRadius.all(Radius.circular(7.0)),
             ),
             child: InkWell(
@@ -669,7 +671,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
             decoration: BoxDecoration(
               color: Colors.grey[100],
-              border: Border.all(color: Color.fromARGB(139, 46, 46, 46), width: 0.5),
+              border: Border.all(color: Color.fromARGB(255, 0, 204, 255), width: 0.8),
               borderRadius: BorderRadius.all(Radius.circular(7.0)),
             ),
             child: InkWell(
@@ -1016,7 +1018,7 @@ Widget completedCard(BuildContext context, Student student) {
 
             decoration: BoxDecoration(
                 color: Colors.grey[100],
-                border: Border.all(color: Color.fromARGB(139, 46, 46, 46), width: 0.5),
+                border: Border.all(color: Color.fromARGB(255, 255, 187, 0), width: 0.8),
                 borderRadius: BorderRadius.all(Radius.circular(7.0)),
               ),
             child: InkWell(

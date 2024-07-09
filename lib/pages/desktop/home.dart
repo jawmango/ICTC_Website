@@ -1,7 +1,9 @@
 import 'package:ICTC_Website/models/program.dart';
+import 'package:ICTC_Website/models/course.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:ICTC_Website/widgets/cards/program_card.dart';
+import 'package:ICTC_Website/widgets/cards/course_card.dart';
 import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -28,6 +30,7 @@ class _HomeDesktopPageState extends State<HomeDesktopPage> {
                 children: [
                   _buildHeroSmallScreen(context),
                   _buildPrograms(context),
+                  _buildCourses(context),
                   FooterWidget(),
                 ],
               ),
@@ -40,6 +43,7 @@ class _HomeDesktopPageState extends State<HomeDesktopPage> {
                   // FeaturedPrograms(),
                   A1HomeFeatprograms(),
                   _buildPrograms(context),
+                  _buildCourses(context),
                   FooterWidget(),
                 ],
               ),
@@ -710,6 +714,87 @@ Widget _buildPrograms(context) {
                     itemCount: programs.length,
                     itemBuilder: (context, index) {
                       return ProgramCardWidget(program: programs[index]);
+                    },
+                  ),
+                );
+              }
+            },
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _buildCourses(context) {
+  return Container(
+    color: Color(0xfffff0),
+    child: Padding(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 20), // Adjust top padding here
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 00), // Adjust top padding for the title
+            child: Text(
+              "Courses",
+              style: TextStyle(
+                color: Color(0xFF153FAA),
+                fontSize: 46,
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w700,
+                height: 0,
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+          FutureBuilder(
+            future: Supabase.instance.client
+                .from('course')
+                .select()
+                .withConverter(
+                    (data) => data.map((e) => Course.fromJson(e)).toList()),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              final courses = snapshot.data as List<Course>;
+              if (MediaQuery.of(context).size.width < 1450) {
+                // ListView for small screen sizes
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: courses.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: CourseCard(course: courses[index]),
+                      );
+                    },
+                  ),
+                );
+              } else {
+                // GridView for larger screen sizes
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 300),
+                  child: GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: 0.8,
+                    ),
+                    itemCount: courses.length,
+                    itemBuilder: (context, index) {
+                      return CourseCard(course: courses[index]);
                     },
                   ),
                 );
