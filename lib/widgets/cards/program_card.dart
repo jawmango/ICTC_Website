@@ -71,7 +71,7 @@ class _ProgramCardWidgetState extends State<ProgramCardWidget> {
                         final url = snapshot.data!;
                         return Image.network(
                           url,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         );
                       }
      

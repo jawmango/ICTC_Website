@@ -1,17 +1,12 @@
-import 'package:ICTC_Website/constants.dart';
-import 'package:ICTC_Website/main.dart';
 import 'package:ICTC_Website/models/program.dart';
 import 'package:ICTC_Website/models/course.dart';
-import 'package:ICTC_Website/pages/desktop/about.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
-import 'package:ICTC_Website/pages/desktop/profile/profile_page.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:ICTC_Website/widgets/cards/program_card.dart';
 import 'package:ICTC_Website/widgets/cards/course_card.dart';
 import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:ICTC_Website/widgets/carousel/carousel.dart';
 
 class ProgramPages extends StatefulWidget {
   const ProgramPages({super.key});
@@ -72,6 +67,7 @@ Widget _buildPrograms(context) {
             future: Supabase.instance.client
                 .from('program')
                 .select()
+                .neq('is_hidden', true)
                 .withConverter(
                     (data) => data.map((e) => Program.fromJson(e)).toList()),
             builder: (context, snapshot) {
@@ -82,6 +78,8 @@ Widget _buildPrograms(context) {
               }
 
               final programs = snapshot.data as List<Program>;
+              programs.sort((a, b) => a.title.compareTo(b.title)); // order
+
               if (MediaQuery.of(context).size.width < 1450) {
                 // ListView for small screen sizes
                 return Padding(
@@ -125,7 +123,6 @@ Widget _buildPrograms(context) {
     ),
   );
 }
-
 Widget _buildCourses(context) {
   final today = DateTime.now();
   return Container(
@@ -137,16 +134,18 @@ Widget _buildCourses(context) {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 00), // Adjust top padding for the title
+            padding: const EdgeInsets.only(top: 15), // Adjust top padding for the title
             child: Text(
               "Courses",
-              style: Theme.of(context).textTheme.bodyLarge),
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ),
           SizedBox(height: 20),
           FutureBuilder(
             future: Supabase.instance.client
                 .from('course')
                 .select()
+                .neq('is_hidden', true)
                 .gt('start_date', today.toIso8601String())
                 .withConverter(
                     (data) => data.map((e) => Course.fromJson(e)).toList()),
@@ -157,7 +156,12 @@ Widget _buildCourses(context) {
                 );
               }
 
+              // Get the list of courses from the snapshot data
               final courses = snapshot.data as List<Course>;
+
+              // Sort courses alphabetically by title
+              courses.sort((a, b) => a.title.compareTo(b.title));
+
               if (MediaQuery.of(context).size.width < 1450) {
                 // ListView for small screen sizes
                 return Padding(

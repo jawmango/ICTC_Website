@@ -100,8 +100,8 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 20),
-            width: MediaQuery.of(context).size.width * 0.3,
+            margin: EdgeInsets.only(top: 15),
+            width: MediaQuery.of(context).size.width * 0.4,
             height: 500,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -139,7 +139,7 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
           ),
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: EdgeInsets.only(top: 15),
               width: MediaQuery.of(context).size.width * 0.3,
               height: 500,
               decoration: BoxDecoration(
@@ -150,12 +150,12 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                    vertical: 40.0, horizontal: 60.0),
+                    vertical: 40.0, horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
                           '${widget.course.title}',
@@ -165,23 +165,14 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Text(
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                    Text(
                           '₱ ${widget.course.cost}',
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w600),
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      '${HtmlUnescape().convert(widget.course.description ?? "No description provided.")}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      textAlign: TextAlign.justify,
-                    ),
                     SizedBox(height: 20),
                     Row(
                       children: [
@@ -197,7 +188,7 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 5),
                     Row(
                       children: [
                         Text(
@@ -212,7 +203,7 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 5),
                     Row(
                       children: [
                         Text(
@@ -221,11 +212,21 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
                               fontSize: 18, fontWeight: FontWeight.w400),
                         ),
                         Text(
-                          "${widget.course.endDate!.difference(widget.course.startDate!).inDays} days (${widget.course.endDate!.difference(widget.course.startDate!).inHours} hours)",
+                          '${widget.course.duration}',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w600),
                         ),
                       ],
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      '${HtmlUnescape().convert(widget.course.description ?? "No description provided.")}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      textAlign: TextAlign.justify,
                     ),
                     SizedBox(height: 25),
                     registerButton(context),
