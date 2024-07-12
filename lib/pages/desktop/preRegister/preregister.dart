@@ -219,6 +219,43 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
                       ],
                     ),
                     SizedBox(height: 5),
+                    Row(
+                children: [
+                   Text(
+                      "Trainer: ",
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w400),
+                    ),
+                  FutureBuilder(
+                              future: Supabase.instance.client
+                    .from('trainer')
+                    .select('first_name, last_name')
+                    .eq('id', '${widget.course.trainerId}')
+                    .single()
+                    .then((response) {
+                  final firstName = response['first_name'] as String;
+                  final lastName = response['last_name'] as String;
+                  final fullName = '$firstName $lastName';
+                  return fullName;
+                              }),
+                              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    return Text(
+                    snapshot.data ?? '',
+                    style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                           ),
+                          );
+                  }
+                              },
+                            ),
+                ],
+              ),
                     Text(
                       '${HtmlUnescape().convert(widget.course.description ?? "No description provided.")}',
                       style: TextStyle(
