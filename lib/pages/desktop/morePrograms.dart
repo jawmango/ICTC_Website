@@ -16,6 +16,8 @@ class ProgramPages extends StatefulWidget {
 }
 
 class _ProgramPagesState extends State<ProgramPages> {
+  int _currentTabIndex = 0; // 0 for Courses, 1 for Programs
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,28 +25,44 @@ class _ProgramPagesState extends State<ProgramPages> {
       appBar: AppBarDesktop(),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth < 1118) {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  _buildCourses(context),
-                  _buildPrograms(context),
-                  FooterWidget(),
-                ],
+          return DefaultTabController(
+            length: 2,
+            child: Scaffold(
+              backgroundColor: Color.fromARGB(255, 255, 255, 255),
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                backgroundColor: Color(0xff19306B),
+                bottom: TabBar(
+                  onTap: (index) {
+                    setState(() {
+                      _currentTabIndex = index;
+                    });
+                  },
+                  tabs: [
+                    Tab(child: Text(
+                      'Courses',
+                      style: TextStyle(color: Colors.white),
+                    ),),
+                    Tab(child: Text(
+                      'Programs',
+                      style: TextStyle(color: Colors.white),
+                    ),),
+                  ],
+                ),
               ),
-            );
-          } else {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  // _buildHero(context),
-                  _buildCourses(context),
-                  _buildPrograms(context),
-                  FooterWidget(),
-                ],
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    if (_currentTabIndex == 0) // Courses tab selected
+                      _buildCourses(context),
+                    if (_currentTabIndex == 1) // Programs tab selected
+                      _buildPrograms(context),
+                    FooterWidget(),
+                  ],
+                ),
               ),
-            );
-          }
+            ),
+          );
         },
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:ICTC_Website/models/course.dart';
+import 'package:ICTC_Website/models/trainer.dart';
 import 'package:ICTC_Website/pages/desktop/preRegister/preregister.dart';
 import 'package:flutter/material.dart';
 import 'package:html_unescape/html_unescape.dart';
@@ -14,6 +15,7 @@ class CourseCard extends StatefulWidget {
   State<CourseCard> createState() => _CourseCardState();
 }
 
+
 class _CourseCardState extends State<CourseCard> {
   late Future<String?> courseUrl = getCourseUrl();
 
@@ -27,6 +29,7 @@ class _CourseCardState extends State<CourseCard> {
       return null;
     }
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +113,8 @@ class _CourseCardState extends State<CourseCard> {
               SizedBox(height: 7),
               Row(
                   children: [
+
+                    
                     Text(
                       "Schedule: ",
                       style: TextStyle(
@@ -123,6 +128,44 @@ class _CourseCardState extends State<CourseCard> {
                   ],
                 ),
                 SizedBox(height: 7),
+              Row(
+                children: [
+                   Text(
+                      "Trainer: ",
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                  FutureBuilder(
+                              future: Supabase.instance.client
+                    .from('trainer')
+                    .select('first_name, last_name')
+                    .eq('id', '${widget.course.trainerId}')
+                    .single()
+                    .then((response) {
+                  final firstName = response['first_name'] as String;
+                  final lastName = response['last_name'] as String;
+                  final fullName = '$firstName $lastName';
+                  return fullName;
+                              }),
+                              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    return Text(
+                    snapshot.data ?? '',
+                    style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                           ),
+                          );
+                  }
+                              },
+                            ),
+                ],
+              ),
+                SizedBox(height: 7),
               Text(
                 '${HtmlUnescape().convert(widget.course.description ?? "No description provided.")}',
                 maxLines: 3,
@@ -131,6 +174,7 @@ class _CourseCardState extends State<CourseCard> {
                     applyHeightToLastDescent: true),
                 //style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400)
               ),
+              
               
              
               // Text('${course.schedule}', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
