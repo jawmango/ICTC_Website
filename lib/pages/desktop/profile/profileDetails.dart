@@ -49,9 +49,9 @@ class _ProfileDetailsState extends State<ProfileDetails> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.2,
-                height: MediaQuery.of(context).size.height * 0.535,
+                height: MediaQuery.of(context).size.height * 0.530,
                 child: Container(
-                  margin: EdgeInsets.only(top: 10),
+                  margin: EdgeInsets.only(top: 25),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -1,7 +1,9 @@
 import 'package:ICTC_Website/models/program.dart';
+import 'package:ICTC_Website/models/course.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:ICTC_Website/widgets/cards/program_card.dart';
+import 'package:ICTC_Website/widgets/cards/course_card.dart';
 import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -668,6 +670,7 @@ Widget _buildPrograms(context) {
             future: Supabase.instance.client
                 .from('program')
                 .select()
+                .neq('is_hidden', true )
                 .withConverter(
                     (data) => data.map((e) => Program.fromJson(e)).toList()),
             builder: (context, snapshot) {
@@ -678,6 +681,7 @@ Widget _buildPrograms(context) {
               }
 
               final programs = snapshot.data as List<Program>;
+              programs.sort((a, b) => a.title.compareTo(b.title));
               if (MediaQuery.of(context).size.width < 1450) {
                 // ListView for small screen sizes
                 return Padding(
@@ -721,4 +725,6 @@ Widget _buildPrograms(context) {
     ),
   );
 }
+
+
 

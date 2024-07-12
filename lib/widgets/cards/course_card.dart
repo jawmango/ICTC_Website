@@ -3,6 +3,7 @@ import 'package:ICTC_Website/pages/desktop/preRegister/preregister.dart';
 import 'package:flutter/material.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:intl/intl.dart';
 
 class CourseCard extends StatefulWidget {
   CourseCard({super.key, required this.course});
@@ -106,7 +107,22 @@ class _CourseCardState extends State<CourseCard> {
               ),
               Text('${widget.course.title}',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600)),
-              SizedBox(height: 20),
+              SizedBox(height: 7),
+              Row(
+                  children: [
+                    Text(
+                      "Schedule: ",
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w400),
+                    ),
+                    Text(
+                      " ${DateFormat.yMMMMd().format(widget.course.startDate!)} - ${DateFormat.yMMMMd().format(widget.course.endDate!)} ",
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 7),
               Text(
                 '${HtmlUnescape().convert(widget.course.description ?? "No description provided.")}',
                 maxLines: 3,
@@ -115,6 +131,8 @@ class _CourseCardState extends State<CourseCard> {
                     applyHeightToLastDescent: true),
                 //style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400)
               ),
+              
+             
               // Text('${course.schedule}', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
               // SizedBox(height: 10),
               // Text('${course.duration}', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
