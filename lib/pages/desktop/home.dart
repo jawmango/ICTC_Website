@@ -534,11 +534,7 @@ Widget _buildHero(context) {
             cursor: SystemMouseCursors.click,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ProgramPages(),
-                  ),
-                );
+                Navigator.pushNamed(context, '/programs');
               },
               style: ButtonStyle(
                 padding: MaterialStateProperty.all<EdgeInsets>(

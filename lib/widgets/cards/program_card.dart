@@ -21,7 +21,7 @@ class _ProgramCardWidgetState extends State<ProgramCardWidget> {
       final url = await Supabase.instance.client.storage
         .from('programs')
         .createSignedUrl(
-          '${widget.program.id}/image.png',
+          '${widget.program.id}/program.png',
           60
         );
       return url;

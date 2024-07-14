@@ -64,11 +64,7 @@ class Drawerdesktop extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => MainApp(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/home');
                     },
                   ),
                   ListTile(
@@ -82,11 +78,7 @@ class Drawerdesktop extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => ProfilePage(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/profile');
                     },
                   ),
                   ListTile(
@@ -100,11 +92,7 @@ class Drawerdesktop extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => AboutPage(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/about');
                     },
                   ),
                   ListTile(
@@ -118,11 +106,7 @@ class Drawerdesktop extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => ProgramPages(), // Replace with correct page
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/programs');
                     },
                   ),
                   SizedBox(height: 510),
@@ -144,6 +128,7 @@ class Drawerdesktop extends StatelessWidget {
                                   content: Text("Successfully signed out!")));
                         }
                         Navigator.pop(context);
+                        Navigator.pushNamed(context, '/home');
                       },
                   ),
                 ],
@@ -185,11 +170,7 @@ class Drawerdesktop extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => MainApp(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/home');
                     },
                   ),
                   ListTile(
@@ -202,11 +183,7 @@ class Drawerdesktop extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => AboutPage(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/about');
                     },
                   ),
                   ListTile(
@@ -219,11 +196,7 @@ class Drawerdesktop extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => ProgramPages(), // Replace with correct page
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/programs');
                     },
                   ),
                   SizedBox(height: 560),
@@ -239,11 +212,7 @@ class Drawerdesktop extends StatelessWidget {
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => LoginPage(), // Replace with correct page
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/login');
                     },
                   ),
                 ],

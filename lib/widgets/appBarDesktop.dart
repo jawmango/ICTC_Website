@@ -61,11 +61,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               TextButton.icon(
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const MainApp(),
-                  ),
-                ),
+                onPressed: () => Navigator.pushNamed(context, '/home'),
                 icon: Image.asset('assets/images/logo_ictc.png',
                     width: 45, height: 45),
                 label: Text(
@@ -230,11 +226,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                   return [
                     PopupMenuItem(
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const ProfilePage(),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/profile');
                       },
                       child: ListTile(
                         leading: Icon(Icons.person),
@@ -250,6 +242,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                     PopupMenuItem(
                       onTap: () async {
                         await Supabase.instance.client.auth.signOut();
+                        Navigator.pushNamed(context, '/home');
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
@@ -278,11 +271,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
               ElevatedButton(
                 style: outlinedStyle,
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    ),
-                  );
+                   Navigator.pushNamed(context, '/login');
                 },
                 child: Text(
                   "Login",
@@ -297,11 +286,7 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
               OutlinedButton(
                 style: filledStyle,
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const SignupPage(),
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/signup');
                 },
                 child: Text(
                   "Sign Up",

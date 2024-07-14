@@ -3,6 +3,7 @@ import 'package:ICTC_Website/pages/auth/signup_page.dart';
 import 'package:ICTC_Website/pages/desktop/about.dart';
 import 'package:ICTC_Website/pages/desktop/home.dart';
 import 'package:ICTC_Website/pages/desktop/morePrograms.dart';
+import 'package:ICTC_Website/pages/desktop/profile/profile_page.dart';
 import 'package:ICTC_Website/pages/mobile/home.dart';
 import 'package:ICTC_Website/pages/desktop/programs/google_certified_educators.dart';
 import 'package:ICTC_Website/pages/desktop/programs/microcredentials.dart';
@@ -79,6 +80,7 @@ class MyApp extends StatelessWidget {
           '/signup': (context) => const SignupPage(),
           '/login': (context) => const LoginPage(),
           '/about': (context) => const AboutPage(),
+          '/profile': (context) => const ProfilePage(),
           '/programs': (context) => const ProgramPages(),
           '/microcredentials': (context) => const MicrocredentialsPage(),
           '/skillup': (context) => const SkillUpPage(),
