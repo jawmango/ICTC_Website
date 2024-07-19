@@ -1,20 +1,19 @@
 import 'package:ICTC_Website/models/program.dart';
-import 'package:ICTC_Website/pages/mobile/program_page_mobile.dart';
 import 'package:ICTC_Website/widgets/programPage.dart';
 import 'package:flutter/material.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class ProgramCardWidget extends StatefulWidget {
-  const ProgramCardWidget({Key? key, required this.program}) : super(key: key);
+class ProgramCardMobileWidget extends StatefulWidget {
+  const ProgramCardMobileWidget({Key? key, required this.program}) : super(key: key);
 
   final Program program;
 
   @override
-  State<ProgramCardWidget> createState() => _ProgramCardWidgetState();
+  State<ProgramCardMobileWidget> createState() => _ProgramCardMobileWidgetState();
 }
 
-class _ProgramCardWidgetState extends State<ProgramCardWidget> {
+class _ProgramCardMobileWidgetState extends State<ProgramCardMobileWidget> {
   late Future<String?> programUrl = getProgramUrl();
 
   Future<String?> getProgramUrl() async {
@@ -34,7 +33,7 @@ class _ProgramCardWidgetState extends State<ProgramCardWidget> {
   @override
   Widget build(BuildContext context) {
    return AspectRatio(
-    aspectRatio: 0.5,
+    aspectRatio: 1,
      child: Container(
       width: 400,
       height: 500,
@@ -54,7 +53,7 @@ class _ProgramCardWidgetState extends State<ProgramCardWidget> {
                 Container(
                   margin: EdgeInsets.only(bottom: 20),
                   width: MediaQuery.of(context).size.width * 0.8,
-                  height: 250,
+                  height: 280,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: Colors.black12)
@@ -75,7 +74,6 @@ class _ProgramCardWidgetState extends State<ProgramCardWidget> {
                           fit: BoxFit.contain,
                         );
                       }
-     
                       return Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +105,7 @@ class _ProgramCardWidgetState extends State<ProgramCardWidget> {
                     children: [
                       FilledButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProgramPageMobile(program: widget.program)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProgramPage(program: widget.program)));
                           // Navigator.of(context).pushNamed(program.route ?? "/home");
                         },  
                         child: Text("Explore Courses",

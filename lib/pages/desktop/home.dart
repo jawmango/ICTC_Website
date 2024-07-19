@@ -1,6 +1,7 @@
 import 'package:ICTC_Website/models/program.dart';
 import 'package:ICTC_Website/models/course.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
+import 'package:ICTC_Website/pages/mobile/program_card_mobile.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:ICTC_Website/widgets/cards/program_card.dart';
 import 'package:ICTC_Website/widgets/cards/course_card.dart';
@@ -29,7 +30,8 @@ class _HomeDesktopPageState extends State<HomeDesktopPage> {
               child: Column(
                 children: [
                   _buildHeroSmallScreen(context),
-                  _buildPrograms(context),
+                  // _buildProgramsMobile(context),
+                  _buildProgramsSmall(context),
                   FooterWidget(),
                 ],
               ),
@@ -39,7 +41,6 @@ class _HomeDesktopPageState extends State<HomeDesktopPage> {
               child: Column(
                 children: [
                   _buildHero(context),
-                  // FeaturedPrograms(),
                   A1HomeFeatprograms(),
                   _buildPrograms(context),
                   FooterWidget(),
@@ -438,6 +439,497 @@ class A1HomeFeatprograms extends StatelessWidget {
   }
 }
 
+  @override
+  Widget _buildProgramsMobile(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 600,
+          height: 932,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(color: Color(0xFFEFEFEF)),
+          child: Stack(
+            children: [
+              Positioned(
+                left: 17,
+                top: 30,
+                child: SizedBox(
+                  width: 397,
+                  height: 110,
+                  child: Text(
+                    'We have courses that span dozens of domains and all different levels of commitment. Here are three of our most popular ones for students, but there are plenty more where they came from.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 11,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w400,
+                      height: 0,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 88,
+                top: 30,
+                child: SizedBox(
+                  width: 255,
+                  child: Text(
+                    'Featured Programs',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 25,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w700,
+                      height: 0,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 20,
+                top: 119,
+                child: Container(
+                  width: 391,
+                  height: 210,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        child: Container(
+                          width: 391,
+                          height: 210,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFF153FAA),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            shadows: [
+                              BoxShadow(
+                                color: Color(0x0C000000),
+                                blurRadius: 4,
+                                offset: Offset(0, 4),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                left: 723,
+                                top: 112,
+                                child: Container(
+                                  width: 506,
+                                  height: 141,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Micro Credential Program',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 36,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w700,
+                                          height: 0,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      SizedBox(
+                                        width: 506,
+                                        height: 87,
+                                        child: Text(
+                                          'short, focused, and competency-based certifications that validate specific skills and knowledge in a particular area.',
+                                          
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w500,
+                                            height: 0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: 217,
+                                top: 77,
+                                child: SizedBox(
+                                  width: 153,
+                                  height: 87,
+                                  child: Text(
+                                    'short, focused, and competency-based certifications that validate specific skills and knowledge in a particular area.',
+                                    
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 11,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 0,
+                        top: 210,
+                        child: Transform(
+                          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(-1.57),
+                          child: Container(
+                            width: 210,
+                            height: 195,
+                            decoration: ShapeDecoration(
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 22,
+                        top: 29,
+                        child: Container(
+                          width: 152,
+                          height: 153,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage("https://via.placeholder.com/152x153"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 216,
+                        top: 28,
+                        child: Text(
+                          'Micro Credential \nProgram',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w700,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 20,
+                top: 561,
+                child: Container(
+                  width: 391,
+                  height: 210,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        child: Container(
+                          width: 391,
+                          height: 210,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFF153FAA),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            shadows: [
+                              BoxShadow(
+                                color: Color(0x0C000000),
+                                blurRadius: 4,
+                                offset: Offset(0, 4),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                left: 723,
+                                top: 112,
+                                child: Container(
+                                  width: 506,
+                                  height: 141,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Micro Credential Program',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 36,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w700,
+                                          height: 0,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      SizedBox(
+                                        width: 506,
+                                        height: 87,
+                                        child: Text(
+                                          'short, focused, and competency-based certifications that validate specific skills and knowledge in a particular area.',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w500,
+                                            height: 0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: 217,
+                                top: 88,
+                                child: SizedBox(
+                                  width: 153,
+                                  height: 87,
+                                  child: Text(
+                                    'aids educators in preparing for the Google for Education Certified Educator examinations and individuals who would like to gain more proficiency in using the Google Workspace in their respective fields.',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 11,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 0,
+                        top: 210,
+                        child: Transform(
+                          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(-1.57),
+                          child: Container(
+                            width: 210,
+                            height: 195,
+                            decoration: ShapeDecoration(
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 216,
+                        top: 28,
+                        child: Text(
+                          'Google Certified\nEducators Program',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w700,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 13,
+                        top: 30,
+                        child: Container(
+                          width: 167,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage("https://via.placeholder.com/167x120"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 20,
+                top: 340,
+                child: Container(
+                  width: 391,
+                  height: 210,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        child: Container(
+                          width: 391,
+                          height: 210,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFF153FAA),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            shadows: [
+                              BoxShadow(
+                                color: Color(0x0C000000),
+                                blurRadius: 4,
+                                offset: Offset(0, 4),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                left: 723,
+                                top: 112,
+                                child: Container(
+                                  width: 506,
+                                  height: 141,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Micro Credential Program',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 36,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w700,
+                                          height: 0,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      SizedBox(
+                                        width: 506,
+                                        height: 87,
+                                        child: Text(
+                                          'short, focused, and competency-based certifications that validate specific skills and knowledge in a particular area.',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w500,
+                                            height: 0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: 24,
+                                top: 87,
+                                child: SizedBox(
+                                  width: 153,
+                                  height: 87,
+                                  child: Text(
+                                    'constitutes a structured sequence of educational sessions meticulously designed to impart essential and sought-after skills demanded within the contemporary market landscape.',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 11,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: 23,
+                                top: 48,
+                                child: Text(
+                                  'Skill-Up Program',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 196,
+                        top: 210,
+                        child: Transform(
+                          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(-1.57),
+                          child: Container(
+                            width: 210,
+                            height: 195,
+                            decoration: ShapeDecoration(
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 198,
+                        top: 84,
+                        child: Container(
+                          width: 192,
+                          height: 43,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage("https://via.placeholder.com/192x43"),
+                              fit: BoxFit.fill,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(0xFFFFFFFF),
+                                blurRadius: 0,
+                                offset: Offset(0, 4),
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+
 Widget _buildHero(context) {
   return Stack(
     children: [
@@ -509,7 +1001,8 @@ Widget _buildHero(context) {
                         
                       ],
                     ),
-                  ]),
+                  ],
+                  )
             ],
           ),
         ),
@@ -632,7 +1125,49 @@ Widget _buildHeroSmallScreen(context) {
                 height: 8,
               ),
             ],
-          )
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: Align(
+              alignment: Alignment.center,
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ProgramPages(),
+                      ),
+                    );
+                  },
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    ),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                      if (states.contains(MaterialState.hovered)) {
+                        return Color.fromARGB(255, 219, 157, 1); // New color when hovered
+                      }
+                      return Color(0xFFF3B503); // Default color
+                    }),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0), // Adjust border radius as needed
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    "Pre-register Now!",
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF19306B),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     ),
@@ -710,6 +1245,89 @@ Widget _buildPrograms(context) {
                     itemCount: programs.length,
                     itemBuilder: (context, index) {
                       return ProgramCardWidget(program: programs[index]);
+                    },
+                  ),
+                );
+              }
+            },
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _buildProgramsSmall(context) {
+  return Container(
+    color: Color(0xfffff0),
+    child: Padding(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 0), // Adjust top padding here
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 00), // Adjust top padding for the title
+            child: Text(
+              "Programs",
+              style: TextStyle(
+                color: Color(0xFF153FAA),
+                fontSize: 32,
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w700,
+                height: 0,
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+          FutureBuilder(
+            future: Supabase.instance.client
+                .from('program')
+                .select()
+                .neq('is_hidden', true )
+                .withConverter(
+                    (data) => data.map((e) => Program.fromJson(e)).toList()),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              final programs = snapshot.data as List<Program>;
+              programs.sort((a, b) => a.title.compareTo(b.title));
+              if (MediaQuery.of(context).size.width < 1450) {
+                // ListView for small screen sizes
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: programs.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: ProgramCardMobileWidget(program: programs[index]),
+                      );
+                    },
+                  ),
+                );
+              } else {
+                // GridView for larger screen sizes
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 300),
+                  child: GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: 0.8,
+                    ),
+                    itemCount: programs.length,
+                    itemBuilder: (context, index) {
+                      return ProgramCardMobileWidget(program: programs[index]);
                     },
                   ),
                 );

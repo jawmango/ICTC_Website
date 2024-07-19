@@ -89,59 +89,59 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     SizedBox(width: 16),
-                    StreamBuilder<List<Program>>(
-                      stream: _stream,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          List<Program> programs = snapshot.data!;
-                          return PopupMenuButton<String>(
-                            shadowColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
-                            padding: EdgeInsets.all(0),
-                            surfaceTintColor: Colors.white,
-                            elevation: 4,
-                            offset: Offset.fromDirection(90, 10),
-                            position: PopupMenuPosition.under,
-                            icon: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 14),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Programs",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xff19306B)),
-                                  ),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Icon(
-                                    Icons.arrow_drop_down,
-                                    size: 18,
-                                    color: Color(0xff19306B),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            tooltip: "View more programs",
-                            itemBuilder: (BuildContext context) {
-                              return [
-                                for (Program program in programs)
-                                  buildProgramMenuItem(context, program),
-                              ];
-                            },
-                          );
-                        } else if (snapshot.hasError) {
-                          return Text("Error: ${snapshot.error}");
-                        } else {
-                          return CircularProgressIndicator();
-                        }
-                      },
-                    ),
+                    // StreamBuilder<List<Program>>(
+                    //   stream: _stream,
+                    //   builder: (context, snapshot) {
+                    //     if (snapshot.hasData) {
+                    //       List<Program> programs = snapshot.data!;
+                    //       return PopupMenuButton<String>(
+                    //         shadowColor: Colors.black,
+                    //         shape: RoundedRectangleBorder(
+                    //             borderRadius:
+                    //                 BorderRadius.all(Radius.circular(15))),
+                    //         padding: EdgeInsets.all(0),
+                    //         surfaceTintColor: Colors.white,
+                    //         elevation: 4,
+                    //         offset: Offset.fromDirection(90, 10),
+                    //         position: PopupMenuPosition.under,
+                    //         icon: Padding(
+                    //           padding:
+                    //               const EdgeInsets.symmetric(horizontal: 14),
+                    //           child: Row(
+                    //             children: [
+                    //               Text(
+                    //                 "Programs",
+                    //                 style: TextStyle(
+                    //                     fontSize: 14,
+                    //                     fontWeight: FontWeight.w400,
+                    //                     color: Color(0xff19306B)),
+                    //               ),
+                    //               SizedBox(
+                    //                 width: 4,
+                    //               ),
+                    //               Icon(
+                    //                 Icons.arrow_drop_down,
+                    //                 size: 18,
+                    //                 color: Color(0xff19306B),
+                    //               ),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         tooltip: "View more programs",
+                    //         itemBuilder: (BuildContext context) {
+                    //           return [
+                    //             for (Program program in programs)
+                    //               buildProgramMenuItem(context, program),
+                    //           ];
+                    //         },
+                    //       );
+                    //     } else if (snapshot.hasError) {
+                    //       return Text("Error: ${snapshot.error}");
+                    //     } else {
+                    //       return CircularProgressIndicator();
+                    //     }
+                    //   },
+                    // ),
                     SizedBox(width: 16),
                     _buildButtons(context)
                   ],
