@@ -114,22 +114,22 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
             ),
             const SizedBox(height: 12),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.end,
-            //   children: [
-            //     MaterialButton(
-            //         minWidth: 30,
-            //         onPressed: null,
-            //         hoverColor: Colors.transparent,
-            //         child: const Text(
-            //           "Forgot your password?",
-            //           style: TextStyle(
-            //               color: Color(0xff153faa),
-            //               fontWeight: FontWeight.w400,
-            //               decoration: TextDecoration.underline),
-            //         )),
-            //   ],
-            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                MaterialButton(
+                    minWidth: 30,
+                    onPressed:  () => Navigator.pushNamed(context, '/passwordrecovery'),
+                    hoverColor: Colors.transparent,
+                    child: const Text(
+                      "Forgot your password?",
+                      style: TextStyle(
+                          color: Color(0xff153faa),
+                          fontWeight: FontWeight.w400,
+                          decoration: TextDecoration.underline),
+                    )),
+              ],
+            ),
             const SizedBox(height: 12),
             InkWell(
               customBorder: RoundedRectangleBorder(

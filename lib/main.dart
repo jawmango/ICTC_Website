@@ -1,4 +1,6 @@
+import 'package:ICTC_Website/pages/auth/forgot_pass.dart';
 import 'package:ICTC_Website/pages/auth/login_page.dart';
+import 'package:ICTC_Website/pages/auth/reset.dart';
 import 'package:ICTC_Website/pages/auth/signup_page.dart';
 import 'package:ICTC_Website/pages/desktop/about.dart';
 import 'package:ICTC_Website/pages/desktop/home.dart';
@@ -88,6 +90,8 @@ class MyApp extends StatelessWidget {
           '/skillup': (context) => const SkillUpPage(),
           '/google_certified_educators': (context) =>
               const GoogleCertifiedEducatorsPage(),
+          '/passwordrecovery': (context) => const ForgotPasswordScreen(),
+          '/update': (context) => const ResetPage(),
         },
         );
   }
