@@ -1020,9 +1020,9 @@ Widget _buildHero(context) {
         ],
       ),
       Container( // pre-register button
-        margin: EdgeInsets.fromLTRB(130, 495, 0, 0),
+        margin: EdgeInsets.fromLTRB(0, 495, 0, 0),
         child: Align(
-          alignment: Alignment.centerLeft,
+          alignment: Alignment.bottomCenter,
           child: MouseRegion(
             cursor: SystemMouseCursors.click,
             child: ElevatedButton(
