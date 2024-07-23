@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-
+        initialRoute: '/',
         routes: {
           '/': (context) => const HomeDesktopPage(),
           '/home': (context) => const HomeDesktopPage(),
@@ -90,6 +90,10 @@ class MyApp extends StatelessWidget {
           '/skillup': (context) => const SkillUpPage(),
           '/google_certified_educators': (context) =>
               const GoogleCertifiedEducatorsPage(),
+          '/passwordrecovery': (context) => const ForgotPasswordScreen(),
+          '/update': (context) => const ResetPage(),
+        },
+        );
   }
 }
 
