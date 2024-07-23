@@ -1019,7 +1019,7 @@ Widget _buildHero(context) {
           ),
         ],
       ),
-      Container(
+      Container( // pre-register button
         margin: EdgeInsets.fromLTRB(130, 495, 0, 0),
         child: Align(
           alignment: Alignment.centerLeft,

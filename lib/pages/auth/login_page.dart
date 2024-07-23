@@ -127,7 +127,7 @@ Widget buildBody(context) {
           children: [
             SizedBox(
               width: MediaQuery.sizeOf(context).width * 0.4,
-              height: MediaQuery.sizeOf(context).height * 0.8,
+              height: MediaQuery.sizeOf(context).height * 0.5,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
