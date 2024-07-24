@@ -242,12 +242,13 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                     PopupMenuItem(
                       onTap: () async {
                         await Supabase.instance.client.auth.signOut();
-                        Navigator.pushNamed(context, '/home');
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                   content: Text("Successfully signed out!")));
+                        Navigator.pushNamed(context, '/home');
                         }
+      
                       },
                       child: ListTile(
                         leading: Icon(Icons.logout),
