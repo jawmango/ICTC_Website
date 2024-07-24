@@ -113,9 +113,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 7),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 MaterialButton(
                     minWidth: 30,
@@ -130,7 +130,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     )),
               ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 1),
             InkWell(
               customBorder: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
