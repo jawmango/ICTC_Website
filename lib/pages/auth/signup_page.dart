@@ -15,7 +15,8 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  late final TextEditingController emailCon,
+  late final TextEditingController 
+      emailCon,
       passwordCon,
       confirmCon,
       firstNameCon,

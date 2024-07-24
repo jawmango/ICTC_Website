@@ -4,6 +4,8 @@ Made by:
 Regina Vibar
 Juanabell Abiada
 Samantha De Las Nieves
+Jericho James Obiedo
+Jerome Patrick Tayco
 
 The Student side serves as a public-facing portal where users can
 pre-register for courses. Upon pre-registration, students receive a billing statement and can

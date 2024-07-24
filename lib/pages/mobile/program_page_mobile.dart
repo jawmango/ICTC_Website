@@ -1,23 +1,22 @@
 import 'package:ICTC_Website/models/course.dart';
 import 'package:ICTC_Website/models/program.dart';
 import 'package:ICTC_Website/pages/desktop/footer.dart';
-import 'package:ICTC_Website/pages/mobile/course_card_mobile.dart';
 import 'package:ICTC_Website/widgets/appBarDesktop.dart';
 import 'package:ICTC_Website/widgets/cards/course_card.dart';
 import 'package:ICTC_Website/widgets/drawerDesktop.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class ProgramPage extends StatefulWidget {
-  const ProgramPage({super.key, required this.program});
+class ProgramPageMobile extends StatefulWidget {
+  const ProgramPageMobile({super.key, required this.program});
 
   final Program program;
 
   @override
-  State<ProgramPage> createState() => _ProgramPageState();
+  State<ProgramPageMobile> createState() => _ProgramPageState();
 }
 
-class _ProgramPageState extends State<ProgramPage> {
+class _ProgramPageState extends State<ProgramPageMobile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,7 +163,7 @@ class _ProgramPageState extends State<ProgramPage> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: CourseCardMobile(course: filteredCourses[index]),
+                          child: CourseCard(course: filteredCourses[index]),
                         );
                       },
                     ),

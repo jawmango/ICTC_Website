@@ -154,7 +154,7 @@ class _PreRegisterPageState extends State<PreRegisterPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
