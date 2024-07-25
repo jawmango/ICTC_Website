@@ -1040,15 +1040,16 @@ Widget _buildHero(context) {
                         );
                       }
      
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image(image: AssetImage('assets/images/logo_ictc.png'), fit: BoxFit.cover, height: 50, width: 50,),SizedBox(height:20  ,),
-                        Text('No image attached.', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400, color: Colors.black54))
-                          ],
-                        ),
-                      );
+                      return const Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.error_outline_rounded),
+                      SizedBox(width: 5),
+                      Text('No Ads attached.'),
+                    ],
+                  ),
+                );
                     }
                   ),
       ),
